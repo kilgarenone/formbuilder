@@ -8,7 +8,7 @@ html {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
-  font-size: 6.125em;
+  font-size: 1.125em;
   font-style: normal;
   font-weight: 400;
   -webkit-text-size-adjust: 100%;
@@ -25,6 +25,11 @@ html {
   line-height: 1.5;
   word-wrap: break-word;
   color: rgba(0, 0, 0, 0.84);
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
 }
 
 blockquote,
