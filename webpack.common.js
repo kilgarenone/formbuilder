@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    app: "./src/app.js"
+    app: "./src/index.js"
   },
   output: {
     filename: "[name].[hash].js",
@@ -36,6 +36,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
+      template: "./src/index.html",
       title: "form builder"
     })
   ]
