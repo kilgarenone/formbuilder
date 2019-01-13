@@ -1,4 +1,3 @@
 import "./index.scss";
 
-const haha = document.getElementById("shitman");
-console.log(haha);
+import "./components/Header/header";

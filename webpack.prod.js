@@ -3,8 +3,8 @@ const common = require("./webpack.common.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = merge(common, {
-  mode: "production",
-  devtool: "source-map",
+  mode: "production", // this trigger webpack out-of-box prod optimizations
+  devtool: "source-map", // supposedly the ideal type without bloating bundle size
   module: {
     rules: [
       {
@@ -20,9 +20,8 @@ module.exports = merge(common, {
     ]
   },
   plugins: [
+    // extract css into separate .css files
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
       filename: "[name].[contenthash].css",
       chunkFilename: "[id].css"
     })
