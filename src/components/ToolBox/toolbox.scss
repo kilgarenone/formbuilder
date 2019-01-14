@@ -1,0 +1,20 @@
+.toolBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  background-color: rgb(233, 243, 236);
+  color: rgb(100, 150, 116);
+  border-radius: 20px;
+}
+
+.toolBox-add-icon {
+  fill: rgb(100, 150, 116);
+}
+
+.toolBox-icon-and-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,23 +1,25 @@
 #builder {
   max-width: 740px;
   margin: 0 auto;
-  min-height: calc(100vh - 70px);
+  padding: 0.7rem;
+  min-height: calc(100vh - 70px - 1rem);
 }
 
 .form-col-title {
   position: relative;
-  height: 50px;
+  height: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-col-title-value {
   height: 100%;
   line-height: 1.2;
+  z-index: 1;
 }
 
 .form-col-title-placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
+  top: -3rem;
   color: #b3b3b1;
   line-height: 1.2;
   pointer-events: none;

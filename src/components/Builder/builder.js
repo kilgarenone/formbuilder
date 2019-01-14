@@ -1,5 +1,6 @@
 import "./builder.scss";
 import { html, render } from "lit-html";
+import toolBoxElm from "../ToolBox/toolBox";
 
 const formColTitlePlaceholder = html`
   <h1 class="form-col-title-placeholder">Title</h1>
@@ -16,6 +17,7 @@ const formColTitleElm = (doNotShowPlaceholder = false) => html`
       ></h1>
       ${!doNotShowPlaceholder ? formColTitlePlaceholder : ""}
     </div>
+    <div class="form-controls">${toolBoxElm()}</div>
   </div>
 `;
 
