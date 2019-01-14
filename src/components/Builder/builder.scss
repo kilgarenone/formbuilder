@@ -1,6 +1,24 @@
 #builder {
-  max-width: 900px;
+  max-width: 740px;
   margin: 0 auto;
-  background: red;
+  min-height: calc(100vh - 70px);
+}
+
+.form-col-title {
+  position: relative;
+  height: 50px;
+}
+
+.form-col-title-value {
   height: 100%;
+  line-height: 1.2;
+}
+
+.form-col-title-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #b3b3b1;
+  line-height: 1.2;
+  pointer-events: none;
 }
