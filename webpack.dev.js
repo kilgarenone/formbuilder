@@ -8,7 +8,7 @@ module.exports = merge(common, {
     hot: true // enable hot module replacement (HMR), no refreshing -> keeps states/variables
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
-  devtool: "cheap-eval-source-map ", // one of the source map types. different speed in different type
+  devtool: "inline-source-map ", // one of the source map types. different speed in different type
   module: {
     rules: [
       {
