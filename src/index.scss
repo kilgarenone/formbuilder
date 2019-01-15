@@ -1,3 +1,73 @@
+@import "css/functions.scss";
+
+:root {
+  --base-font-size: 1rem;
+  --base-line-height: 1.4;
+  --line-height-small: 1.26;
+  --line-height-big: 1.16;
+  --font-small: 0.804rem;
+  --font-normal: 1.125rem;
+  --font-normalx2: 1.175rem;
+  --font-M: 1.414rem;
+  --font-L: 1.788rem;
+  --font-XL: 2.53rem;
+}
+
+@media (min-width: 35em) {
+  :root {
+    --line-height-small: 1.36;
+    --line-height-big: 1.23;
+    --base-font-size: 1.125rem;
+    --base-line-height: 1.5;
+  }
+}
+
+.mb-0 {
+  margin-bottom: vr(1);
+}
+
+.mb-1 {
+  margin-bottom: vr(1.5);
+}
+
+.mb-2 {
+  margin-bottom: vr(2);
+}
+
+.mb-3 {
+  margin-bottom: vr(2.5);
+}
+
+.pb-0 {
+  padding-bottom: vr(1);
+}
+
+.pb-1 {
+  padding-bottom: vr(1.5);
+}
+
+.pb-2 {
+  padding-bottom: vr(2);
+}
+
+.pb-3 {
+  padding-bottom: vr(2.5);
+}
+
+h1,
+.h1,
+h2,
+.h2 {
+  line-height: var(--line-height-big);
+}
+
+h3,
+.h3,
+h4,
+.h4 {
+  line-height: var(--line-height-small);
+}
+
 *,
 *::before,
 *::after {
@@ -8,7 +78,8 @@ html {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
-  font-size: 1.125em;
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
   font-style: normal;
   font-weight: 400;
   -webkit-text-size-adjust: 100%;
@@ -22,7 +93,6 @@ html {
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  line-height: 1.5;
   word-wrap: break-word;
   color: rgba(0, 0, 0, 0.84);
 }

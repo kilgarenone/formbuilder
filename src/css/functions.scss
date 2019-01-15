@@ -1,0 +1,3 @@
+@function vr($multiple) {
+  @return calc(var(--base-line-height) * #{$multiple} * var(--base-font-size));
+}
