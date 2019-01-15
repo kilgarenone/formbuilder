@@ -3,8 +3,7 @@
     [
       "@babel/preset-env",
       {
-        "modules": false,
-        "targets": "> 1%, not dead"
+        "modules": false
       }
     ]
   ],

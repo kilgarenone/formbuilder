@@ -1,5 +1,5 @@
 import { html, render } from "lit-html";
-import "./toolbox.scss";
+import "./toolbox.css";
 import textInput from "./../TextInput/textInput";
 
 // function handleKeydown(e) {

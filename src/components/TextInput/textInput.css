@@ -13,8 +13,8 @@
   border-radius: 0.2em;
   outline: 0;
   box-shadow: none;
+}
 
-  &:focus {
-    border-color: #2962ff;
-  }
+.input:focus {
+  border-color: #2962ff;
 }

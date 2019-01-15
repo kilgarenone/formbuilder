@@ -1,4 +1,4 @@
-import "./builder.scss";
+import "./builder.css";
 import { html, render } from "lit-html";
 import toolBoxElm from "../ToolBox/toolBox";
 
@@ -16,7 +16,7 @@ export default class Builder {
 
   formColTitleElm = (doNotShowPlaceholder = false, controls = []) => html`
     <div class="form-col">
-      <div class="form-col-title mb-3">
+      <div class="form-col-title mb-1">
         <h1
           @input=${this.keyup}
           class="form-col-title-value"

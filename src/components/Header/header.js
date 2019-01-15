@@ -1,4 +1,4 @@
-import "./header.scss";
+import "./header.css";
 
 const header = `<ul class="navbar__items">
   <li class="navbar__items__item">New form</li>
