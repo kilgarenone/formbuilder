@@ -6,12 +6,6 @@ const formColTitlePlaceholder = html`
   <h1 class="form-col-title-placeholder">Title</h1>
 `;
 
-function formControlsContainer(controls) {
-  return html`
-    <div>${controls.map(control => control)}</div>
-  `;
-}
-
 export default class Builder {
   constructor() {
     this.render();
@@ -22,7 +16,7 @@ export default class Builder {
 
   formColTitleElm = (doNotShowPlaceholder = false, controls = []) => html`
     <div class="form-col">
-      <div class="form-col-title">
+      <div class="form-col-title mb-3">
         <h1
           @input=${this.keyup}
           class="form-col-title-value"

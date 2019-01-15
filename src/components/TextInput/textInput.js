@@ -1,4 +1,5 @@
 import { html, render } from "lit-html";
+import "./textInput.scss";
 
 export default function textInput() {
   return html`

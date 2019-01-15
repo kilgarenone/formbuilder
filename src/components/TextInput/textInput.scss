@@ -1,0 +1,20 @@
+.control-text-input {
+  position: relative;
+}
+.input {
+  height: 2.7em;
+  width: 100%;
+  padding: 0.4em 0.7em;
+  color: rgba(0, 0, 0, 0.76);
+  font-weight: 400;
+  font-style: normal;
+  // font-size: ;
+  border: 2px solid #e0e0e0;
+  border-radius: 0.2em;
+  outline: 0;
+  box-shadow: none;
+
+  &:focus {
+    border-color: #2962ff;
+  }
+}
