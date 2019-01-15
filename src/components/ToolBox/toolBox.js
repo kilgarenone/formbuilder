@@ -1,9 +1,6 @@
 import { html, render } from "lit-html";
 import "./toolbox.scss";
-
-function handleClickToolBox() {
-  this.classList.toggle("active");
-}
+import textInput from "./../TextInput/textInput";
 
 // function handleKeydown(e) {
 //   if (e.keyCode === 40) {
@@ -11,7 +8,19 @@ function handleClickToolBox() {
 //   }
 // }
 
-export default function toolBoxElm() {
+export default function toolBoxElm(insertFormControl) {
+  function handleClickToolBox() {
+    this.classList.toggle("active");
+  }
+
+  function handleSelectedFormControl() {
+    console.log(this);
+    const controlType = this.controlType;
+    if (controlType === "text") {
+      insertFormControl(textInput());
+    }
+  }
+
   return html`
     <div>
       <button
@@ -47,7 +56,14 @@ export default function toolBoxElm() {
         </svg>
       </button>
       <div class="toolBox-menu" role="menu">
-        <button class="toolBox-menu-item" role="menuitem">Text</button>
+        <button
+          @click=${handleSelectedFormControl}
+          .controlType=${"text"}
+          class="toolBox-menu-item"
+          role="menuitem"
+        >
+          Text Input
+        </button>
         <button class="toolBox-menu-item" role="menuitem">Checkbox</button>
         <button class="toolBox-menu-item" role="menuitem">Radio Button</button>
       </div>

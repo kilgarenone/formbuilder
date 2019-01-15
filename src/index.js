@@ -1,4 +1,6 @@
 import "./index.scss";
 
 import "./components/Header/header";
-import "./components/Builder/builder";
+import Builder from "./components/Builder/builder";
+
+new Builder();
