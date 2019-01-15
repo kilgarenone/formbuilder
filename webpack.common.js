@@ -10,6 +10,11 @@ module.exports = {
     filename: "[name].[hash].js",
     path: path.resolve(__dirname, "dist")
   },
+  resolve: {
+    alias: {
+      css: path.resolve(__dirname, "src/css/")
+    }
+  },
   module: {
     rules: [
       // convert ES5+ to ES5 using babel through .babelrc
