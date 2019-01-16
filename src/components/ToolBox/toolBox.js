@@ -17,7 +17,7 @@ export default function toolBoxElm(insertFormControl) {
     console.log(this);
     const controlType = this.controlType;
     if (controlType === "text") {
-      insertFormControl(textInput());
+      insertFormControl({ type: controlType, template: textInput() });
     }
   }
 

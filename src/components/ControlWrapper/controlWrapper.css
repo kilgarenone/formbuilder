@@ -1,0 +1,51 @@
+.cmp-wrapper {
+  position: relative;
+}
+
+.cmp-wrapper__tools {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  min-width: 6rem;
+}
+
+.cmp-wrapper__tools > button {
+  background-color: transparent;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.cmp-wrapper__tools > button:hover {
+  background-color: #d3d3d3;
+}
+
+.cmp-wrapper__menu {
+  position: absolute;
+  right: 0;
+  top: -20px;
+}
+
+.cmp-wrapper__3dots {
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+.cmp-wrapper__3dots:after {
+  font-size: 15px;
+  content: "•••";
+  letter-spacing: 2px;
+}
+
+.cmp-wrapper__3dots:hover:after {
+  letter-spacing: 3px;
+}
+
+.cmp-wrapper__3dots.active + .cmp-wrapper__tools {
+  opacity: 1;
+  visibility: visible;
+}

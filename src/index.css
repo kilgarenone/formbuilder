@@ -20,6 +20,16 @@
   }
 }
 
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
 .mb-0 {
   margin-bottom: calc(var(--base-line-height) * 1 * var(--base-font-size));
 }
@@ -50,6 +60,10 @@
 
 .pb-3 {
   padding-bottom: calc(var(--base-line-height) * 2.5 * var(--base-font-size));
+}
+
+label {
+  color: rgba(0, 0, 0, 0.74);
 }
 
 h1,

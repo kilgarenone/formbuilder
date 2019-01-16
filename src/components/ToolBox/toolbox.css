@@ -36,12 +36,6 @@
   background: pink;
 }
 
-.flex-col-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .toolBox-add-icon {
   fill: rgb(100, 150, 116);
 }
