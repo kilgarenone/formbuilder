@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Tool from "./Tool";
 
 const TOOLS = [
-  { displayName: "Text Input", key: "text" },
-  { displayName: "Checkbox", key: "checkBox" },
-  { displayName: "Radio Button", key: "radioButton" }
+  { displayName: "Text Input", type: "text" },
+  { displayName: "Checkbox", type: "checkBox" },
+  { displayName: "Radio Button", type: "radioButton" }
 ];
 
 export default class ToolBox extends Component {
@@ -55,7 +55,8 @@ export default class ToolBox extends Component {
             <div className="toolBox-menu" role="menu">
               {TOOLS.map(tool => (
                 <Tool
-                  key={tool.key}
+                  key={tool.type}
+                  toolType={tool.type}
                   name={tool.displayName}
                   handleSelectedTool={handleSelectedTool}
                 />

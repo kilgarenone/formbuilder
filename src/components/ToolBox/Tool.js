@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Tool({ name, handleSelectedTool }) {
+export default function Tool({ toolType, name, handleSelectedTool }) {
   function clickHandler() {
-    handleSelectedTool(name);
+    handleSelectedTool(toolType);
   }
 
   return (
