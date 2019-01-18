@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ToolBox from "../ToolBox/ToolBox";
 
 function FormColTitlePlaceholder() {
   return (
@@ -7,8 +8,8 @@ function FormColTitlePlaceholder() {
       <style jsx>
         {`
           h1 {
-            position: relative;
-            top: -3rem;
+            position: absolute;
+            top: 0;
             color: #b3b3b1;
             pointer-events: none;
           }
@@ -21,6 +22,10 @@ function FormColTitlePlaceholder() {
 export default class FormColumn extends Component {
   state = { doNotShowPlaceholder: false };
 
+  keyup = e => {
+    this.setState({ doNotShowPlaceholder: !!e.target.textContent.trim() });
+  };
+
   render() {
     return (
       <div className="form-col">
@@ -30,9 +35,11 @@ export default class FormColumn extends Component {
             className="form-col-title-value"
             contentEditable="true"
             spellCheck="false"
-          />
-          {!this.state.doNotShowPlaceholder && <FormColTitlePlaceholder />}
+          >
+            {!this.state.doNotShowPlaceholder && <FormColTitlePlaceholder />}
+          </h1>
         </div>
+        <ToolBox />
         <style jsx>{`
           .form-col-title {
             position: relative;
@@ -47,14 +54,4 @@ export default class FormColumn extends Component {
       </div>
     );
   }
-
-  // insertFormControl = ({ type, template }) => {
-  //   const wrappedTemplate = new ControlWrapper({ type, template });
-  //   this.controls.push(wrappedTemplate);
-  //   render(this.formColTitleElm(false, this.controls), this.builderElm);
-  // };
-
-  keyup = e => {
-    this.setState({ doNotShowPlaceholder: !!e.target.textContent.trim() });
-  };
 }

@@ -103,6 +103,10 @@ export default function App() {
             line-height: var(--line-height-big);
           }
 
+          h1 {
+            font-size: var(--font-L);
+          }
+
           h3,
           .h3,
           h4,
