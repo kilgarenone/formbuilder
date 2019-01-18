@@ -1,6 +1,6 @@
 import { html, render } from "lit-html";
 import "./toolbox.css";
-import textInput from "./../TextInput/textInput";
+import textInput from "../TextInput/textInput";
 
 // function handleKeydown(e) {
 //   if (e.keyCode === 40) {

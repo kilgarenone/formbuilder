@@ -18,6 +18,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
+    "@emotion/babel-preset-css-prop": "^10.0.6",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^1.0.0",
@@ -50,9 +51,8 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.6",
-    "babel-plugin-emotion": "^10.0.6",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "styled-jsx": "^3.2.0"
   }
 }
