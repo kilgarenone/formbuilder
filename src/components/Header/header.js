@@ -13,7 +13,6 @@ function Header() {
             height: 70px;
             padding: 0 0.5rem;
             background-color: #f1f1f1;
-            margin-bottom: 1rem;
           }
 
           .navbar-items {
