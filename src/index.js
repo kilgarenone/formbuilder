@@ -1,6 +1,5 @@
-import "./index.css";
+import React from "react";
+import ReactDOM from "react-dom";
+// import App from "./App";
 
-import "./components/Header/header";
-import Builder from "./components/Builder/builder";
-
-new Builder();
+ReactDOM.render(<div>Hello Worldddd</div>, document.getElementById("root"));

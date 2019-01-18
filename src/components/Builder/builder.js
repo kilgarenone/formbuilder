@@ -9,7 +9,6 @@ const formColTitlePlaceholder = html`
 
 export default class Builder {
   constructor() {
-    this.formControlsContainerId = Math.random();
     this.render();
   }
 
@@ -28,7 +27,7 @@ export default class Builder {
         ${!doNotShowPlaceholder ? formColTitlePlaceholder : ""}
       </div>
       <div class="form-controls">
-        <div class="mb-2" id=${this.formControlsContainerId}></div>
+        <div class="mb-2">${controls.map(control => control)}</div>
         ${toolBoxElm(this.insertFormControl)}
       </div>
     </div>
@@ -36,14 +35,8 @@ export default class Builder {
 
   insertFormControl = ({ type, template }) => {
     const wrappedTemplate = new ControlWrapper({ type, template });
-    const formControlsContainer = document.getElementById(
-      this.formControlsContainerId
-    );
-
-    console.log(formControlsContainer, wrappedTemplate);
-    // formControlsContainer.appendChild(wrappedTemplate);
-    // this.controls.push(wrappedTemplate);
-    // render(this.formColTitleElm(false, this.controls), this.builderElm);
+    this.controls.push(wrappedTemplate);
+    render(this.formColTitleElm(false, this.controls), this.builderElm);
   };
 
   keyup = e => {

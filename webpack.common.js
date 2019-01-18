@@ -1,20 +1,23 @@
+const fs = require("fs");
 const path = require("path");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = {
   entry: {
-    app: "./src/index.js"
+    app: resolveApp("src/index.js")
   },
   output: {
     filename: "[name].[hash].js",
-    path: path.resolve(__dirname, "dist")
+    path: resolveApp("build")
   },
-  resolve: {
-    alias: {
-      css: path.resolve(__dirname, "src/css/")
-    }
-  },
+  // resolve: {
+  //   alias: {
+  //     css: path.resolve(__dirname, "src/css/")"  //   }
+  // },
   module: {
     rules: [
       // convert ES5+ to ES5 using babel through .babelrc
@@ -43,12 +46,11 @@ module.exports = {
   },
   plugins: [
     // always deletes the dist folder first in each dev or prod run
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(["build"]),
     // make webpack automatically creates index.html with proper hashed
     // style and scripts files for us
     new HtmlWebpackPlugin({
-      template: "./src/index.html", // use our own template
-      title: "form builder"
+      template: resolveApp("src/index.html") // use our own template
     })
   ]
 };

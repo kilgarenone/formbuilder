@@ -1,6 +1,6 @@
 const merge = require("webpack-merge");
-const common = require("./webpack.common.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
   mode: "production", // this trigger webpack out-of-box prod optimizations
