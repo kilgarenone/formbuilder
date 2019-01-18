@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+import Tool from "./Tool";
+
+const TOOLS = [
+  { displayName: "Text Input", key: "text" },
+  { displayName: "Checkbox", key: "checkBox" },
+  { displayName: "Radio Button", key: "radioButton" }
+];
 
 export default class ToolBox extends Component {
   state = { showMenu: false };
@@ -8,6 +15,8 @@ export default class ToolBox extends Component {
   };
 
   render() {
+    const { handleSelectedTool } = this.props;
+
     return (
       <>
         <div>
@@ -44,28 +53,13 @@ export default class ToolBox extends Component {
           </button>
           {this.state.showMenu && (
             <div className="toolBox-menu" role="menu">
-              <button
-                type="button"
-                onClick={this.handleSelectedFormControl}
-                className="toolBox-menu-item"
-                role="menuitem"
-              >
-                Text Input
-              </button>
-              <button
-                type="button"
-                className="toolBox-menu-item"
-                role="menuitem"
-              >
-                Checkbox
-              </button>
-              <button
-                type="button"
-                className="toolBox-menu-item"
-                role="menuitem"
-              >
-                Radio Button
-              </button>
+              {TOOLS.map(tool => (
+                <Tool
+                  key={tool.key}
+                  name={tool.displayName}
+                  handleSelectedTool={handleSelectedTool}
+                />
+              ))}
             </div>
           )}
         </div>
@@ -85,11 +79,6 @@ export default class ToolBox extends Component {
               cursor: pointer;
             }
 
-            .btn-toolBox.active + .toolBox-menu {
-              visibility: visible;
-              opacity: 1;
-            }
-
             .toolBox-arrow-dropdown-icon {
               position: absolute;
               right: 20px;
@@ -99,14 +88,6 @@ export default class ToolBox extends Component {
             .toolBox-menu {
               display: flex;
               flex-wrap: wrap;
-              visibility: hidden;
-              opacity: 0;
-            }
-
-            .toolBox-menu-item {
-              flex-basis: 33%;
-              height: 60px;
-              background: pink;
             }
 
             .toolBox-add-icon {
