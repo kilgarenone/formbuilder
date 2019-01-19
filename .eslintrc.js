@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   parser: "babel-eslint",
   extends: [
@@ -5,6 +7,11 @@ module.exports = {
     "plugin:prettier/recommended", // this do 3 things 1) extends: 'prettier 2) plugins: 'prettier' 3) rules: prettier/pre: error
     "prettier/react"
   ],
+  settings: {
+    "import/resolver": {
+      webpack: { config: "webpack.common.js" } // make eslint respect our 'resolve' aliases defined in webpack.common.js
+    }
+  },
   rules: {
     "no-unused-expressions": ["error", { allowTaggedTemplates: true }],
     "react/jsx-filename-extension": ["error", { extensions: [".js", ".jsx"] }],

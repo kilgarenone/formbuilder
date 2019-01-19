@@ -14,10 +14,12 @@ module.exports = {
     filename: "[name].[hash].js",
     path: resolveApp("build")
   },
-  // resolve: {
-  //   alias: {
-  //     css: path.resolve(__dirname, "src/css/")"  //   }
-  // },
+  resolve: {
+    alias: {
+      css: path.resolve(__dirname, "src/css/"),
+      components: path.resolve(__dirname, "src/components/")
+    }
+  },
   module: {
     rules: [
       // convert ES5+ to ES5 using babel through .babelrc
