@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./components/Header/Header";
-import EditorLayout from "./components/EditorLayout";
-import FormColumn from "./components/FormColumn/FormColumn";
+import Header from "components/Header/Header";
+import EditorLayout from "components/EditorLayout";
+import FormColumn from "components/FormColumn/FormColumn";
 
 export default function App() {
   return (
