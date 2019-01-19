@@ -6,7 +6,7 @@ import { setControlLabel } from "../../pages/editor/Editor.state";
 class TextInput extends Component {
   constructor() {
     super();
-    this.handleLabelInput = debounce(this.handleLabelInput, 5000);
+    this.handleLabelInput = debounce(this.handleLabelInput, 1500);
   }
 
   editLabel = e => {
@@ -23,12 +23,37 @@ class TextInput extends Component {
     this.handleLabelInput(label);
   };
 
+  handleKeyPress = e => {
+    // prevents entering into newline in contentEditable
+    if (e.charCode === 13) {
+      e.preventDefault();
+    }
+  };
+
+  handlePasteInLabel = e => {
+    // source: https://stackoverflow.com/questions/2176861/javascript-get-clipboard-data-on-paste-event-cross-browser/6804718#comment51446455_19269040
+    let content;
+    // Important! Stop data actually being pasted into div
+    e.preventDefault();
+
+    if (e.clipboardData) {
+      content = (e.originalEvent || e).clipboardData.getData("text/plain");
+      document.execCommand("insertText", false, content);
+    } else if (window.clipboardData) {
+      // for IE
+      content = window.clipboardData.getData("Text");
+      document.selection.createRange().pasteHTML(content);
+    }
+  };
+
   render() {
     return (
       <>
         <div className="cmp-text">
           <label
             contentEditable
+            onPaste={this.handlePasteInLabel}
+            onKeyPress={this.handleKeyPress}
             onClick={this.editLabel}
             onInput={this.handleLabelInputDebounced}
             spellCheck="false"
