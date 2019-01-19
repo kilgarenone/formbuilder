@@ -41,7 +41,7 @@ class FormColumn extends Component {
   mapToControl = ({ key, toolType }) => {
     let component;
     if (toolType === "text") {
-      component = <TextInput key={key} />;
+      component = <TextInput formId={this.formId} ctrlId={key} key={key} />;
     }
     return component;
   };
