@@ -1,17 +1,37 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import ToolBox from "../ToolBox/ToolBox";
 import FormColTitle from "./FormColTitle";
 import TextInput from "../TextInput/TextInput";
+import {
+  createNewControlActionCreator,
+  createNewFormColumn
+} from "../../pages/editor/Editor.state";
 
-export default class FormColumn extends Component {
+class FormColumn extends Component {
   state = { doNotShowPlaceholder: false, controls: [] };
 
+  formId = `form-${new Date().getTime()}`;
+
+  componentDidMount() {
+    this.props.createNewFormColumn(this.formId);
+  }
+
   handleTitleInput = e => {
-    this.setState({ doNotShowPlaceholder: !!e.target.textContent.trim() });
+    this.setState({
+      doNotShowPlaceholder: !!e.target.textContent.trim()
+    });
   };
 
   handleSelectedTool = toolType => {
-    const control = { key: `ctrl-${new Date().getTime()}`, toolType };
+    const control = {
+      key: `ctrl-${new Date().getTime()}`,
+      toolType
+    };
+
+    this.props.createNewControlActionCreator(control.key, this.formId, {
+      type: control.toolType
+    });
 
     this.setState(prevState => ({
       controls: [...prevState.controls, control]
@@ -39,3 +59,13 @@ export default class FormColumn extends Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  createNewControlActionCreator,
+  createNewFormColumn
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(FormColumn);

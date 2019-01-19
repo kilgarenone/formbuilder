@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
+import editorReducer from "../pages/editor/Editor.state";
 
-// export const rootReducer = combineReducers({
-//   questionnaire,
-// });
+export default combineReducers({
+  editorReducer
+});
