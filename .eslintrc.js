@@ -13,6 +13,7 @@ module.exports = {
     }
   },
   rules: {
+    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
     "no-unused-expressions": ["error", { allowTaggedTemplates: true }],
     "react/jsx-filename-extension": ["error", { extensions: [".js", ".jsx"] }],
     // 'jsx-a11y/anchor-is-valid': [
