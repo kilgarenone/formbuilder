@@ -1,5 +1,6 @@
 {
   "prettier.eslintIntegration": true, // integrate with prettier-eslint
   "eslint.autoFixOnSave": false,
-  "editor.formatOnSave": true // I freaking LOVE this behaviour!!!
+  "editor.formatOnSave": true, // I freaking LOVE this behaviour!!!
+  "prettier.printWidth": 60
 }
