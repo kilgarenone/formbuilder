@@ -1,30 +1,54 @@
-import React from "react";
+import React, { Component } from "react";
+import ButtonItem from "./ButtonItem";
 import Button from "./Button";
 
-function Dropdown({ handleSelectedItem, items, children }) {
-  return (
-    <div>
-      <button
-        type="button"
-        aria-haspopup="true"
-        aria-label="Select text input type"
-      >
-        {children}
-      </button>
-      <div role="menu">
-        {items.map(item => (
-          <Button
-            key={item.key}
-            itemKey={item.key}
-            type="button"
-            onClick={handleSelectedItem}
-          >
-            {item.desc}
-          </Button>
-        ))}
+class Dropdown extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isMenuOpen: false };
+  }
+
+  toggleMenu = () => {
+    this.setState(prevState => ({
+      isMenuOpen: !prevState.isMenuOpen
+    }));
+  };
+
+  render() {
+    return (
+      <div>
+        <Button
+          type="button"
+          aria-haspopup="true"
+          aria-label="Select text input type"
+          onClick={this.toggleMenu}
+        >
+          {this.props.children}
+        </Button>
+        {this.state.isMenuOpen && (
+          <div role="menu">
+            {this.props.items.map(item => (
+              <ButtonItem
+                key={item.key}
+                itemKey={item.key}
+                type="button"
+                onClick={this.props.handleSelectedItem}
+              >
+                {item.desc}
+              </ButtonItem>
+            ))}
+          </div>
+        )}
+        <style jsx>
+          {`
+            button {
+              cursor: pointer;
+            }
+          `}
+        </style>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Dropdown;

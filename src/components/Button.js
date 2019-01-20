@@ -1,19 +1,30 @@
-import React, { Component } from "react";
+/* eslint-disable react/button-has-type */
+import React from "react";
 
-class Button extends Component {
-  handleClick = () => {
-    this.props.onClick(this.props.itemKey);
-  };
-
-  render() {
-    const { children, ...props } = this.props;
-    return (
-      // eslint-disable-next-line react/button-has-type
-      <button onClick={this.handleClick} {...props}>
-        {children}
-      </button>
-    );
-  }
+function Button({ children, ...props }) {
+  return (
+    <>
+      <button {...props}>{children}</button>
+      <style jsx>
+        {`
+          button {
+            font-family: inherit;
+            display: inline-block;
+            border-radius: 99999rem;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            appearance: none;
+            padding: 0.3em 1.5em;
+            border: 2px solid blue;
+            background-color: transparent;
+          }
+        `}
+      </style>
+    </>
+  );
 }
 
 export default Button;
