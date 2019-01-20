@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import Dropdown from "./Dropdown";
+
+const TEXT_INPUT_TYPES = [
+  { key: "date", desc: "Date" },
+  { key: "currency", desc: "Currency" }
+];
 
 class PropertiesPanel extends Component {
   state = {};
@@ -7,6 +13,12 @@ class PropertiesPanel extends Component {
     return (
       <>
         <aside>
+          <Dropdown
+            items={TEXT_INPUT_TYPES}
+            handleSelectedItem={this.handleSelectedItem}
+          >
+            Input Type
+          </Dropdown>
           <label htmlFor="propPanel-textMasking">
             Text masking
             <input type="text" id="propPanel-textMasking" />

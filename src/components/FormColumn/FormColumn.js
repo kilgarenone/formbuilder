@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ToolBox from "../ToolBox/ToolBox";
 import FormColTitle from "./FormColTitle";
-import TextInput from "../TextInput/TextInput";
+import Control from "../Control";
 import {
   createNewControlActionCreator,
   createNewFormColumn
@@ -38,13 +38,9 @@ class FormColumn extends Component {
     }));
   };
 
-  mapToControl = ({ key, toolType }) => {
-    let component;
-    if (toolType === "text") {
-      component = <TextInput formId={this.formId} ctrlId={key} key={key} />;
-    }
-    return component;
-  };
+  mapToControl = ({ key, toolType }) => (
+    <Control type={toolType} formId={this.formId} ctrlId={key} key={key} />
+  );
 
   render() {
     return (

@@ -11,7 +11,7 @@ export default function FormColTitle({
           onInput={handleTitleInput}
           spellCheck="false"
           contentEditable
-          suppressContentEditableWarning="true"
+          suppressContentEditableWarning
         >
           {!doNotShowPlaceholder && <span>Title</span>}
         </h1>
