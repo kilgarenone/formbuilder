@@ -1,5 +1,5 @@
 import React from "react";
-import PropertiesPanel from "./PropertiesPanel";
+import PropertiesPanel from "./PropertiesPanel/PropertiesPanel";
 
 export default function EditorLayout({ children }) {
   return (

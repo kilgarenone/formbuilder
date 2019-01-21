@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React, { Component } from "react";
 
 class ButtonItem extends Component {
@@ -6,12 +7,29 @@ class ButtonItem extends Component {
   };
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, itemKey, onClick, ...props } = this.props;
     return (
-      // eslint-disable-next-line react/button-has-type
-      <button onClick={this.handleClick} {...props}>
-        {children}
-      </button>
+      <>
+        <button onClick={this.handleClick} {...props}>
+          {children}
+        </button>
+        <style jsx>
+          {`
+            button {
+              font-family: inherit;
+              display: block;
+              font-weight: 500;
+              white-space: nowrap;
+              cursor: pointer;
+              text-align: left;
+              text-decoration: none;
+              padding: 0.3em;
+              background-color: transparent;
+              width: 100%;
+            }
+          `}
+        </style>
+      </>
     );
   }
 }

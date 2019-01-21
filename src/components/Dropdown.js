@@ -14,6 +14,12 @@ class Dropdown extends Component {
     }));
   };
 
+  handleSelectedItem = item => {
+    console.log(item);
+    // this.props.handleSelectedItem(item);
+    this.toggleMenu();
+  };
+
   render() {
     return (
       <div>
@@ -26,13 +32,13 @@ class Dropdown extends Component {
           {this.props.children}
         </Button>
         {this.state.isMenuOpen && (
-          <div role="menu">
+          <div className="dropdown-menu" role="menu">
             {this.props.items.map(item => (
               <ButtonItem
                 key={item.key}
                 itemKey={item.key}
                 type="button"
-                onClick={this.props.handleSelectedItem}
+                onClick={this.handleSelectedItem}
               >
                 {item.desc}
               </ButtonItem>
@@ -41,8 +47,10 @@ class Dropdown extends Component {
         )}
         <style jsx>
           {`
-            button {
-              cursor: pointer;
+            .dropdown-menu {
+              position: absolute;
+              background-color: white;
+              width: 100%;
             }
           `}
         </style>

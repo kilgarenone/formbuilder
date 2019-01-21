@@ -3,6 +3,7 @@ import debounce from "lodash.debounce";
 import { connect } from "react-redux";
 import TextInput from "./TextInput/TextInput";
 import { setControlLabel } from "../pages/editor/Editor.state";
+import { setActiveControl } from "../pages/editor/PropertiesPanel/PropertiesPanel.state";
 
 class Control extends Component {
   constructor(props) {
@@ -58,10 +59,21 @@ class Control extends Component {
     return component;
   };
 
+  handleClickedControl = () => {
+    const { formId, ctrlId } = this.props;
+    this.props.setActiveControl(formId, ctrlId);
+  };
+
   render() {
     const component = this.getControlComponent(this.props.type);
     return (
-      <>
+      <div
+        tabIndex="0"
+        role="button"
+        className="control"
+        onKeyUp={this.handleKeyUp}
+        onClick={this.handleClickedControl}
+      >
         <label
           contentEditable
           onPaste={this.handlePasteInLabel}
@@ -77,6 +89,9 @@ class Control extends Component {
         {component}
         <style jsx>
           {`
+            .control:hover {
+              outline: 2px solid blue;
+            }
             label {
               position: relative;
               display: block;
@@ -93,13 +108,14 @@ class Control extends Component {
             }
           `}
         </style>
-      </>
+      </div>
     );
   }
 }
 
 const mapDispatchToProps = {
-  setControlLabel
+  setControlLabel,
+  setActiveControl
 };
 
 export default connect(

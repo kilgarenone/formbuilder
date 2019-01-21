@@ -11,7 +11,9 @@ export default class ToolBox extends Component {
   state = { showMenu: false };
 
   handleClickToolBox = () => {
-    this.setState(prevState => ({ showMenu: !prevState.showMenu }));
+    this.setState(prevState => ({
+      showMenu: !prevState.showMenu
+    }));
   };
 
   render() {

@@ -4,37 +4,31 @@ export const SET_CONTROL_LABEL = "formbuilder/pages/editor/setControlLabel";
 export const CREATE_NEW_FORM_COLUMN =
   "formbuilder/pages/editor/createNewFormColumn";
 
-const initialState = { formCols: {} };
+const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case CREATE_NEW_FORM_COLUMN:
       return {
         ...state,
-        formCols: { ...state.formCols, [action.data]: {} }
+        [action.data]: {}
       };
     case CREATE_NEW_CONTROL:
       return {
         ...state,
-        formCols: {
-          ...state.formCols,
-          [action.formId]: {
-            ...state.formCols[action.formId],
-            [action.ctrlId]: action.data
-          }
+        [action.formId]: {
+          ...state[action.formId],
+          [action.ctrlId]: action.data
         }
       };
     case SET_CONTROL_LABEL:
       return {
         ...state,
-        formCols: {
-          ...state.formCols,
-          [action.formId]: {
-            ...state.formCols[action.formId],
-            [action.ctrlId]: {
-              ...state.formCols[action.formId][action.ctrlId],
-              label: action.label
-            }
+        [action.formId]: {
+          ...state[action.formId],
+          [action.ctrlId]: {
+            ...state[action.formId][action.ctrlId],
+            label: action.label
           }
         }
       };

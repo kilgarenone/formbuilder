@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Dropdown from "./Dropdown";
+import Dropdown from "components/Dropdown";
+import { connect } from "react-redux";
+import { controlSelector } from "./PropertiesPanel.state";
 
 const TEXT_INPUT_TYPES = [
   { key: "date", desc: "Date" },
@@ -17,7 +19,8 @@ class PropertiesPanel extends Component {
             items={TEXT_INPUT_TYPES}
             handleSelectedItem={this.handleSelectedItem}
           >
-            Input Type
+            {this.props.activeControlProps &&
+              this.props.activeControlProps.type}
           </Dropdown>
           <label htmlFor="propPanel-textMasking">
             Text masking
@@ -41,4 +44,13 @@ class PropertiesPanel extends Component {
   }
 }
 
-export default PropertiesPanel;
+function mapStateToProps(state, ownProps) {
+  return {
+    activeControlProps: controlSelector(state)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(PropertiesPanel);

@@ -20,6 +20,7 @@ function Button({ children, ...props }) {
             padding: 0.3em 1.5em;
             border: 2px solid blue;
             background-color: transparent;
+            width: 100%;
           }
         `}
       </style>
