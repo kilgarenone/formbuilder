@@ -11,21 +11,25 @@ const TEXT_INPUT_TYPES = [
 class PropertiesPanel extends Component {
   state = {};
 
+  handleSelectedItem = () => {};
+
   render() {
     return (
       <>
         <aside>
-          <Dropdown
-            items={TEXT_INPUT_TYPES}
-            handleSelectedItem={this.handleSelectedItem}
-          >
-            {this.props.activeControlProps &&
-              this.props.activeControlProps.type}
-          </Dropdown>
-          <label htmlFor="propPanel-textMasking">
-            Text masking
-            <input type="text" id="propPanel-textMasking" />
-          </label>
+          {this.props.activeControlProps ? (
+            <Dropdown
+              items={TEXT_INPUT_TYPES}
+              handleSelectedItem={this.handleSelectedItem}
+            >
+              {this.props.activeControlProps.type}
+            </Dropdown>
+          ) : (
+            <div>
+              <div>Control's Properties panel</div>
+              <div>Select a control to being</div>
+            </div>
+          )}
         </aside>
         <style jsx>
           {`
