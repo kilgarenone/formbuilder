@@ -24,11 +24,13 @@ class TextInput extends Component {
 
     for (let i = 0, j = 0; i < placeholderLength; i++) {
       const parseAsIntVal = parseInt(strippedValue[j], 10);
+
       const valueIsInt =
         typeof parseAsIntVal === "number" && parseAsIntVal % 1 === 0;
       const valueIsLetter = strippedValue[j]
         ? strippedValue[j].match(/[A-Z]/i)
         : false;
+
       const matchesMaskedNumberSym = maskedNumber.indexOf(placeholder[i]) >= 0;
       const matchesMaskedLetterSym = maskedLetter.indexOf(placeholder[i]) >= 0;
 
@@ -48,6 +50,7 @@ class TextInput extends Component {
         // this.options.onError( e ); // write your own error handling function
         return newValue; // TODO: DON"T RETURN this. need to see to target.value frist
       } else {
+        // user
         newValue += placeholder[i];
       }
 
@@ -74,7 +77,7 @@ class TextInput extends Component {
 
   render() {
     return (
-      <>
+      <div>
         <span ref={this.inputShell} aria-hidden="true" />
         <input
           type="tel"
@@ -86,9 +89,25 @@ class TextInput extends Component {
         />
         <style jsx>
           {`
-            .cmp-text {
+            div {
               position: relative;
             }
+
+            span {
+              position: absolute;
+              left: 0;
+              top: 0;
+              pointer-events: none;
+              color: pink;
+              background-color: transparent;
+            }
+
+            span :global(i) {
+              color: transparent;
+              opacity: 0;
+              visibility: hidden;
+            }
+
             .cmp-text__input {
               height: 2.7em;
               width: 100%;
@@ -100,6 +119,7 @@ class TextInput extends Component {
               border-radius: 0.2em;
               outline: 0;
               box-shadow: none;
+              background-color: transparent;
             }
 
             .cmp-text__input:focus {
@@ -107,7 +127,7 @@ class TextInput extends Component {
             }
           `}
         </style>
-      </>
+      </div>
     );
   }
 }
