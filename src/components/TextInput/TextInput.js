@@ -8,7 +8,7 @@ class TextInput extends Component {
     this.inputShell = React.createRef();
   }
 
-  handleInputChange = e => {
+  handleCurrentChange = e => {
     const target = this.input.current;
     const isCharsetPresent = ""; // TODO: set your custom masking pattern
     const maskedNumber = "XMDY";
@@ -21,7 +21,7 @@ class TextInput extends Component {
     const strippedValue = isCharsetPresent
       ? value.replace(/\W/g, "") // only keeps A-Z, a-z, 0-9, _
       : value.replace(/\D/g, ""); // only keeps 0-9 (digits)
-    debugger;
+
     for (let i = 0, j = 0; i < placeholderLength; i++) {
       const parseAsIntVal = parseInt(strippedValue[j], 10);
       const valueIsInt =
@@ -56,9 +56,7 @@ class TextInput extends Component {
         break;
       }
     }
-    console.log("stripped", newValue);
-    target.value = newValue;
-    this.updateShellValue();
+    return newValue;
   };
 
   updateShellValue = () => {
@@ -69,10 +67,15 @@ class TextInput extends Component {
     )}`;
   };
 
+  handleInputChange = () => {
+    this.input.current.value = this.handleCurrentChange();
+    this.updateShellValue();
+  };
+
   render() {
     return (
       <>
-        <span ref={this.inputShell} />
+        <span ref={this.inputShell} aria-hidden="true" />
         <input
           type="tel"
           ref={this.input}
