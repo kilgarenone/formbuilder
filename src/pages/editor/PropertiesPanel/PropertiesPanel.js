@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Dropdown from "components/Dropdown";
 import { connect } from "react-redux";
 import { controlSelector } from "./PropertiesPanel.state";
+import Button from "components/Button"
 
 const TEXT_INPUT_TYPES = [
   { key: "date", desc: "Date" },
@@ -9,9 +10,17 @@ const TEXT_INPUT_TYPES = [
 ];
 
 class PropertiesPanel extends Component {
-  state = {};
+  state = { showDateFormatSelections: false };
 
-  handleSelectedItem = () => {};
+  handleSelectedItem = key => {
+    if (key === "date") {
+      this.setState({ showDateFormatSelections: true });
+    }
+  };
+
+  handleSelectedFormating = (config) => {
+    console.log(config)
+  }
 
   render() {
     return (
@@ -27,9 +36,19 @@ class PropertiesPanel extends Component {
           ) : (
             <div>
               <div>Control's Properties panel</div>
-              <div>Select a control to being</div>
+              <div>Select a control to begin</div>
             </div>
           )}
+          {this.state.showDateFormatSelections && (
+            <Button 
+                type="button" 
+                title="2 digits days, months, and 4 digits year" 
+                item={{placeholder: `DD/MM/YYYY`, pattern: `(1[0-2]|0[1-9])\/\d\d`}} 
+                onClick={this.handleSelectedFormating} >
+                <span>DD/MM/YYY</span>
+            </Button> 
+            )
+          }
         </aside>
         <style jsx>
           {`

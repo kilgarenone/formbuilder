@@ -15,8 +15,7 @@ class Dropdown extends Component {
   };
 
   handleSelectedItem = item => {
-    console.log(item);
-    // this.props.handleSelectedItem(item);
+    this.props.handleSelectedItem(item);
     this.toggleMenu();
   };
 
