@@ -21,48 +21,49 @@ class TextInput extends Component {
     const strippedValue = isCharsetPresent
       ? value.replace(/\W/g, "") // only keeps A-Z, a-z, 0-9, _
       : value.replace(/\D/g, ""); // only keeps 0-9 (digits)
-
+    debugger;
     for (let i = 0, j = 0; i < placeholderLength; i++) {
       const parseAsIntVal = parseInt(strippedValue[j], 10);
-      const isInt =
+      const valueIsInt =
         typeof parseAsIntVal === "number" && parseAsIntVal % 1 === 0;
-      const isLetter = strippedValue[j]
+      const valueIsLetter = strippedValue[j]
         ? strippedValue[j].match(/[A-Z]/i)
         : false;
-      const matchesNumber = maskedNumber.indexOf(placeholder[i]) >= 0;
-      const matchesLetter = maskedLetter.indexOf(placeholder[i]) >= 0;
+      const matchesMaskedNumberSym = maskedNumber.indexOf(placeholder[i]) >= 0;
+      const matchesMaskedLetterSym = maskedLetter.indexOf(placeholder[i]) >= 0;
 
       if (
-        (matchesNumber && isInt) ||
-        (isCharsetPresent && matchesLetter && isLetter)
+        (matchesMaskedNumberSym && valueIsInt) ||
+        (isCharsetPresent && matchesMaskedLetterSym && valueIsLetter)
       ) {
         // eslint-disable-next-line no-plusplus
         newValue += strippedValue[j++];
-        console.log("newvalue", newValue);
       } else if (
-        (!isCharsetPresent && !isInt && matchesNumber) ||
+        (!isCharsetPresent && !valueIsInt && matchesMaskedNumberSym) ||
         (isCharsetPresent &&
-          ((matchesLetter && !isLetter) || (matchesNumber && !isInt)))
+          ((matchesMaskedLetterSym && !valueIsLetter) ||
+            (matchesMaskedNumberSym && !valueIsInt)))
       ) {
         // user is typing characters in 'maskedNumber' & 'maskedLetter
         // this.options.onError( e ); // write your own error handling function
-        return newValue;
+        return newValue; // TODO: DON"T RETURN this. need to see to target.value frist
       } else {
         newValue += placeholder[i];
       }
 
       // break if no characters left and the pattern is non-special character
-      if (!strippedValue[j]) {
+      if (strippedValue[j] === undefined) {
         break;
       }
     }
+    console.log("stripped", newValue);
     target.value = newValue;
     this.updateShellValue();
   };
 
   updateShellValue = () => {
     const value = this.input.current.value;
-
+    console.log("value", value);
     this.inputShell.current.innerHTML = `<i>${value}</i>${this.state.placeholder.substring(
       value.length
     )}`;
