@@ -23,6 +23,10 @@ class TextInput extends Component {
       : value.replace(/\D/g, ""); // only keeps 0-9 (digits)
 
     for (let i = 0, j = 0; i < placeholderLength; i++) {
+      // break if no characters left and the pattern is non-special character
+      if (strippedValue[j] === undefined) {
+        break;
+      }
       const parseAsIntVal = parseInt(strippedValue[j], 10);
 
       const valueIsInt =
@@ -48,23 +52,17 @@ class TextInput extends Component {
       ) {
         // user is typing characters in 'maskedNumber' & 'maskedLetter
         // this.options.onError( e ); // write your own error handling function
-        return newValue; // TODO: DON"T RETURN this. need to see to target.value frist
+        return newValue;
       } else {
         // user
         newValue += placeholder[i];
-      }
-
-      // break if no characters left and the pattern is non-special character
-      if (strippedValue[j] === undefined) {
-        break;
       }
     }
     return newValue;
   };
 
   updateShellValue = () => {
-    const value = this.input.current.value;
-    console.log("value", value);
+    const { value } = this.input.current;
     this.inputShell.current.innerHTML = `<i>${value}</i>${this.state.placeholder.substring(
       value.length
     )}`;
@@ -78,7 +76,11 @@ class TextInput extends Component {
   render() {
     return (
       <div>
-        <span ref={this.inputShell} aria-hidden="true" />
+        <span
+          className="flex-xy-center"
+          ref={this.inputShell}
+          aria-hidden="true"
+        />
         <input
           type="tel"
           ref={this.input}
@@ -96,30 +98,30 @@ class TextInput extends Component {
             span {
               position: absolute;
               left: 0;
-              top: 0;
+              top: 1px;
               pointer-events: none;
-              color: pink;
-              background-color: transparent;
+              color: lightgrey;
+              padding: 0.4rem 0.7rem;
+              height: 100%;
+              font-family: monospace;
             }
 
             span :global(i) {
-              color: transparent;
-              opacity: 0;
               visibility: hidden;
             }
 
             .cmp-text__input {
-              height: 2.7em;
+              height: 2.7rem;
               width: 100%;
-              padding: 0.4em 0.7em;
+              padding: 0.4rem 0.7rem;
               color: rgba(0, 0, 0, 0.76);
               font-weight: 400;
               font-style: normal;
+              font-size: inherit;
               border: 2px solid #e0e0e0;
               border-radius: 0.2em;
               outline: 0;
               box-shadow: none;
-              background-color: transparent;
             }
 
             .cmp-text__input:focus {

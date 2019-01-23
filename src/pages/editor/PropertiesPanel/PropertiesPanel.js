@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Dropdown from "components/Dropdown";
 import { connect } from "react-redux";
 import Button from "components/Button";
-import { controlSelector } from "./PropertiesPanel.state";
+import { controlSelector, setInputFormat } from "./PropertiesPanel.state";
 
 const TEXT_INPUT_TYPES = [
   { key: "date", desc: "Date" },
@@ -21,6 +21,7 @@ class PropertiesPanel extends Component {
   handleSelectedFormating = config => {
     // TODO: pass config to formId -> ctrlId via redux action creator
     // access control object in reducer via its 'state' value
+    this.props.setInputFormat(config);
   };
 
   render() {
@@ -78,7 +79,11 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
+const mapDispatchToProps = {
+  setInputFormat
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(PropertiesPanel);

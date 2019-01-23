@@ -1,8 +1,9 @@
-export const SET_TEXT_MASKING = "formbuilder/pages/editor/setTextMasking";
 export const CREATE_NEW_CONTROL = "formbuilder/pages/editor/createNewControl";
 export const SET_CONTROL_LABEL = "formbuilder/pages/editor/setControlLabel";
 export const CREATE_NEW_FORM_COLUMN =
   "formbuilder/pages/editor/createNewFormColumn";
+export const SET_TEXT_MASKING =
+  "formbuilder/pages/editor/propertiesPanel/setTextMasking";
 
 const initialState = {};
 
@@ -32,6 +33,17 @@ export default (state = initialState, action) => {
           }
         }
       };
+    case SET_TEXT_MASKING:
+      return {
+        ...state,
+        [action.formId]: {
+          ...state[action.formId],
+          [action.ctrlId]: {
+            ...state[action.formId][action.ctrlId],
+            ...action.config
+          }
+        }
+      };
     default:
       return state;
   }
@@ -50,14 +62,6 @@ export function createNewFormColumn(data) {
   return {
     type: CREATE_NEW_FORM_COLUMN,
     data
-  };
-}
-
-export function setTextMaskingForAControl(mask, ctrlId) {
-  return {
-    type: SET_TEXT_MASKING,
-    mask,
-    ctrlId
   };
 }
 

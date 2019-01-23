@@ -49,8 +49,7 @@ class FormColumn extends Component {
           handleTitleInput={this.handleTitleInput}
           doNotShowPlaceholder={this.state.doNotShowPlaceholder}
         />
-        <Control type="text" />
-        {/* <div>{this.state.controls.map(this.mapToControl)}</div> */}
+        <div>{this.state.controls.map(this.mapToControl)}</div>
         <ToolBox handleSelectedTool={this.handleSelectedTool} />
       </div>
     );

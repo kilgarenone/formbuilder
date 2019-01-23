@@ -40,6 +40,12 @@ export default function App() {
             align-items: center;
           }
 
+          .flex-xy-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
           .flex {
             display: flex;
           }

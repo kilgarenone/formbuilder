@@ -1,3 +1,5 @@
+import { SET_TEXT_MASKING } from "../Editor.state";
+
 const SET_ACTIVE_CONTROL =
   "formbuilder/pages/editor/propertiesPanel/setActiveControl";
 
@@ -26,4 +28,18 @@ export function controlSelector(state) {
   const { formId, ctrlId } = state.activeControl;
 
   return state.forms[formId] ? state.forms[formId][ctrlId] : null;
+}
+
+export function setInputFormat(config) {
+  return (dispatch, getState) => {
+    const state = getState();
+    const { formId, ctrlId } = state.activeControl;
+
+    dispatch({
+      type: SET_TEXT_MASKING,
+      formId,
+      ctrlId,
+      config
+    });
+  };
 }
