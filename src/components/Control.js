@@ -53,7 +53,7 @@ class Control extends Component {
   getControlComponent = type => {
     let component;
     if (type === "text") {
-      component = <TextInput />;
+      component = <TextInput {...this.props} />;
     }
 
     return component;

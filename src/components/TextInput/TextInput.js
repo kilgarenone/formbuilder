@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { controlSelectorViaFormIdAndCtrlId } from "../../pages/editor/Editor.state";
 
 class TextInput extends Component {
   constructor(props) {
     super(props);
-    this.state = { placeholder: "MM/YY" };
     this.input = React.createRef();
     this.inputShell = React.createRef();
   }
@@ -13,7 +14,7 @@ class TextInput extends Component {
     const isCharsetPresent = ""; // TODO: set your custom masking pattern
     const maskedNumber = "XMDY";
     const maskedLetter = "_";
-    const placeholder = isCharsetPresent || this.state.placeholder;
+    const placeholder = isCharsetPresent || this.props.control.placeholder;
     const placeholderLength = placeholder.length;
     const { value } = target;
     let newValue = "";
@@ -63,7 +64,7 @@ class TextInput extends Component {
 
   updateShellValue = () => {
     const { value } = this.input.current;
-    this.inputShell.current.innerHTML = `<i>${value}</i>${this.state.placeholder.substring(
+    this.inputShell.current.innerHTML = `<i>${value}</i>${this.props.control.placeholder.substring(
       value.length
     )}`;
   };
@@ -73,20 +74,34 @@ class TextInput extends Component {
     this.updateShellValue();
   };
 
+  handleNormalTextChange = e => {
+    console.log("normal", e.target.value);
+  };
+
   render() {
+    const { control } = this.props;
+
     return (
       <div>
-        <span
-          className="flex-xy-center"
-          ref={this.inputShell}
-          aria-hidden="true"
-        />
+        {control.placeholder && (
+          <span
+            className="flex-xy-center"
+            ref={this.inputShell}
+            aria-hidden="true"
+          >
+            {control.placeholder}
+          </span>
+        )}
         <input
-          type="tel"
+          type={control.type}
           ref={this.input}
-          onChange={this.handleInputChange}
+          onChange={
+            control.pattern
+              ? this.handleInputChange
+              : this.handleNormalTextChange
+          }
           className="cmp-text__input"
-          pattern="(1[0-2]|0[1-9])/\d\d"
+          pattern={control.pattern ? control.pattern : false}
           id="world"
         />
         <style jsx>
@@ -98,12 +113,12 @@ class TextInput extends Component {
             span {
               position: absolute;
               left: 0;
-              top: 1px;
+              top: -1px;
               pointer-events: none;
               color: lightgrey;
               padding: 0.4rem 0.7rem;
               height: 100%;
-              font-family: monospace;
+              letter-spacing: 0.05em;
             }
 
             span :global(i) {
@@ -134,4 +149,13 @@ class TextInput extends Component {
   }
 }
 
-export default TextInput;
+function mapStateToProps(state, { formId, ctrlId }) {
+  return {
+    control: controlSelectorViaFormIdAndCtrlId(state, formId, ctrlId)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(TextInput);

@@ -5,7 +5,10 @@ import Button from "./Button";
 class Dropdown extends Component {
   constructor(props) {
     super(props);
-    this.state = { isMenuOpen: false };
+    this.state = {
+      isMenuOpen: false,
+      currentActiveItemDesc: props.initialActiveItemDesc
+    };
   }
 
   toggleMenu = () => {
@@ -16,6 +19,7 @@ class Dropdown extends Component {
 
   handleSelectedItem = item => {
     this.props.handleSelectedItem(item);
+    this.setState({ currentActiveItemDesc: item.desc });
     this.toggleMenu();
   };
 
@@ -28,14 +32,14 @@ class Dropdown extends Component {
           aria-label="Select text input type"
           onClick={this.toggleMenu}
         >
-          {this.props.children}
+          {this.state.currentActiveItemDesc}
         </Button>
         {this.state.isMenuOpen && (
           <div className="dropdown-menu" role="menu">
             {this.props.items.map(item => (
               <ButtonItem
                 key={item.key}
-                itemKey={item.key}
+                item={item}
                 type="button"
                 onClick={this.handleSelectedItem}
               >

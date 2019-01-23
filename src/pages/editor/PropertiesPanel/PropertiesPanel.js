@@ -5,15 +5,15 @@ import Button from "components/Button";
 import { controlSelector, setInputFormat } from "./PropertiesPanel.state";
 
 const TEXT_INPUT_TYPES = [
-  { key: "date", desc: "Date" },
-  { key: "currency", desc: "Currency" }
+  { type: "date", desc: "Date" },
+  { type: "currency", desc: "Currency" }
 ];
 
 class PropertiesPanel extends Component {
   state = { showDateFormatSelections: false };
 
-  handleSelectedItem = key => {
-    if (key === "date") {
+  handleSelectedItem = ({ type }) => {
+    if (type === "date") {
       this.setState({ showDateFormatSelections: true });
     }
   };
@@ -29,12 +29,14 @@ class PropertiesPanel extends Component {
       <>
         <aside>
           {this.props.activeControlProps ? (
-            <Dropdown
-              items={TEXT_INPUT_TYPES}
-              handleSelectedItem={this.handleSelectedItem}
-            >
-              {this.props.activeControlProps.type}
-            </Dropdown>
+            <div>
+              <h4>Input type</h4>
+              <Dropdown
+                items={TEXT_INPUT_TYPES}
+                handleSelectedItem={this.handleSelectedItem}
+                initialActiveItemDesc={this.props.activeControlProps.desc}
+              />
+            </div>
           ) : (
             <div>
               <div>Control's Properties panel</div>
@@ -46,9 +48,10 @@ class PropertiesPanel extends Component {
               type="button"
               title="2 digits days, months, and 4 digits year"
               item={{
-                placeholder: `DD/MM/YYYY`,
+                placeholder: `MM/DD/YYYY`,
                 // eslint-disable-next-line no-useless-escape
-                pattern: `(1[0-2]|0[1-9])/\d\d`
+                pattern: `(1[0-2]|0[1-9])/\d\d\d\d`,
+                type: `date`
               }}
               onClick={this.handleSelectedFormating}
             >

@@ -5,7 +5,7 @@ import FormColTitle from "./FormColTitle";
 import Control from "../Control";
 import {
   createNewControlActionCreator,
-  createNewFormColumn
+  createNewFormColumnActionCreator
 } from "../../pages/editor/Editor.state";
 
 class FormColumn extends Component {
@@ -14,7 +14,7 @@ class FormColumn extends Component {
   formId = `form-${new Date().getTime()}`;
 
   componentDidMount() {
-    this.props.createNewFormColumn(this.formId);
+    this.props.createNewFormColumnActionCreator(this.formId);
   }
 
   handleTitleInput = e => {
@@ -23,14 +23,16 @@ class FormColumn extends Component {
     });
   };
 
-  handleSelectedTool = toolType => {
+  handleSelectedTool = item => {
     const control = {
       key: `ctrl-${new Date().getTime()}`,
-      toolType
+      type: item.type,
+      desc: item.desc
     };
 
     this.props.createNewControlActionCreator(control.key, this.formId, {
-      type: control.toolType
+      type: control.type,
+      desc: control.desc
     });
 
     this.setState(prevState => ({
@@ -38,8 +40,8 @@ class FormColumn extends Component {
     }));
   };
 
-  mapToControl = ({ key, toolType }) => (
-    <Control type={toolType} formId={this.formId} ctrlId={key} key={key} />
+  mapToControl = ({ key, type }) => (
+    <Control type={type} formId={this.formId} ctrlId={key} key={key} />
   );
 
   render() {
@@ -58,7 +60,7 @@ class FormColumn extends Component {
 
 const mapDispatchToProps = {
   createNewControlActionCreator,
-  createNewFormColumn
+  createNewFormColumnActionCreator
 };
 
 export default connect(

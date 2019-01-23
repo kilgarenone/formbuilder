@@ -1,24 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default function Tool({ toolType, name, handleSelectedTool }) {
-  function clickHandler() {
-    handleSelectedTool(toolType);
+export default class Tool extends Component {
+  clickHandler = () => {
+    this.props.handleSelectedTool(this.props.item);
+  };
+
+  render() {
+    return (
+      <>
+        <button type="button" onClick={this.clickHandler} role="menuitem">
+          {this.props.name}
+        </button>
+        <style jsx>
+          {`
+            button {
+              flex-basis: 33%;
+              height: 60px;
+              background: pink;
+            }
+          `}
+        </style>
+      </>
+    );
   }
-
-  return (
-    <>
-      <button type="button" onClick={clickHandler} role="menuitem">
-        {name}
-      </button>
-      <style jsx>
-        {`
-          button {
-            flex-basis: 33%;
-            height: 60px;
-            background: pink;
-          }
-        `}
-      </style>
-    </>
-  );
 }

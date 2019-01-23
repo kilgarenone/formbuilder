@@ -58,7 +58,7 @@ export function createNewControlActionCreator(ctrlId, formId, data) {
   };
 }
 
-export function createNewFormColumn(data) {
+export function createNewFormColumnActionCreator(data) {
   return {
     type: CREATE_NEW_FORM_COLUMN,
     data
@@ -72,4 +72,8 @@ export function setControlLabel(formId, ctrlId, label) {
     ctrlId,
     label
   };
+}
+
+export function controlSelectorViaFormIdAndCtrlId(state, formId, ctrlId) {
+  return state.forms[formId] ? state.forms[formId][ctrlId] : null;
 }

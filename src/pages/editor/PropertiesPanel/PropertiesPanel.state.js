@@ -34,7 +34,9 @@ export function setInputFormat(config) {
   return (dispatch, getState) => {
     const state = getState();
     const { formId, ctrlId } = state.activeControl;
-
+    if (config.type === "date") {
+      config.type = "tel";
+    }
     dispatch({
       type: SET_TEXT_MASKING,
       formId,

@@ -3,11 +3,11 @@ import React, { Component } from "react";
 
 class ButtonItem extends Component {
   handleClick = () => {
-    this.props.onClick(this.props.itemKey);
+    this.props.onClick(this.props.item);
   };
 
   render() {
-    const { children, itemKey, onClick, ...props } = this.props;
+    const { children, item, onClick, ...props } = this.props;
     return (
       <>
         <button onClick={this.handleClick} {...props}>
