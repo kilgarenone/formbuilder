@@ -19,7 +19,7 @@ class TextInput extends Component {
   }
 
   handleInputChange = () => {
-    const { placeholder, charset } = this.props;
+    const { placeholder, charset } = this.props.control;
 
     this.input.current.value = conformInputToMasking(
       this.input.current.value,
