@@ -70,7 +70,10 @@ export function setAdvancedInputFormat(e) {
       type: SET_TEXT_MASKING,
       formId,
       ctrlId,
-      config: { placeholder: newValue }
+      config: {
+        placeholder: newValue.toUpperCase().replace(/_/i, "X"),
+        charset: newValue
+      }
     });
   };
 }

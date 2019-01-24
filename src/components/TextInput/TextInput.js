@@ -17,8 +17,8 @@ class TextInput extends Component {
 
   handleCurrentChange = e => {
     const target = this.input.current;
-    const isCharsetPresent = ""; // TODO: set your custom masking pattern
-    const maskedNumber = "XMDY";
+    const isCharsetPresent = this.props.control.charset; // TODO: set your custom masking pattern
+    const maskedNumber = "xXMDY";
     const maskedLetter = "_";
     const placeholder = isCharsetPresent || this.props.control.placeholder;
     const placeholderLength = placeholder.length;
@@ -102,7 +102,7 @@ class TextInput extends Component {
           type={control.type}
           ref={this.input}
           onChange={
-            control.pattern
+            control.pattern || control.charset
               ? this.handleInputChange
               : this.handleNormalTextChange
           }
