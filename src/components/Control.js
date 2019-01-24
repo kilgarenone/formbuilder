@@ -66,11 +66,13 @@ class Control extends Component {
 
   render() {
     const component = this.getControlComponent(this.props.type);
+    const { activeControlId, ctrlId } = this.props;
+
     return (
       <div
         tabIndex="0"
         role="button"
-        className="control"
+        className={`control${activeControlId === ctrlId ? " active" : ""}`}
         onKeyUp={this.handleKeyUp}
         onClick={this.handleClickedControl}
       >
@@ -90,16 +92,23 @@ class Control extends Component {
         <style jsx>
           {`
             .control:hover {
+              outline: 2px solid lightblue;
+            }
+
+            .control.active {
               outline: 2px solid blue;
             }
+
             label {
               position: relative;
               display: block;
               min-height: 2rem;
             }
+
             label > :global(br) {
               display: none;
             }
+
             span {
               position: absolute;
               top: 0;
@@ -113,12 +122,18 @@ class Control extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    activeControlId: state.activeControl.ctrlId
+  };
+}
+
 const mapDispatchToProps = {
   setControlLabel,
   setActiveControl
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Control);
