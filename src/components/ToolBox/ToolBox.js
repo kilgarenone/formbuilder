@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Tool from "./Tool";
 
 const TOOLS = [
-  { desc: "Text input", type: "text" },
-  { desc: "Checkbox", type: "checkBox" },
-  { desc: "Radio button", type: "radioButton" }
+  { desc: "Text input", type: "text" }
+  // { desc: "Checkbox", type: "checkBox" },
+  // { desc: "Radio button", type: "radioButton" }
 ];
 
 export default class ToolBox extends Component {

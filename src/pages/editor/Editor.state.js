@@ -2,6 +2,7 @@ export const CREATE_NEW_CONTROL = "formbuilder/pages/editor/createNewControl";
 export const SET_CONTROL_LABEL = "formbuilder/pages/editor/setControlLabel";
 export const CREATE_NEW_FORM_COLUMN =
   "formbuilder/pages/editor/createNewFormColumn";
+export const UPDATE_FORM_TITLE = "formbuilder/pages/editor/updateFormTitle";
 export const SET_TEXT_MASKING =
   "formbuilder/pages/editor/propertiesPanel/setTextMasking";
 
@@ -13,6 +14,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         [action.data]: {}
+      };
+    case UPDATE_FORM_TITLE:
+      return {
+        ...state,
+        [action.formId]: {
+          ...state[action.formId],
+          title: action.data
+        }
       };
     case CREATE_NEW_CONTROL:
       return {
@@ -76,4 +85,12 @@ export function setControlLabel(formId, ctrlId, label) {
 
 export function controlSelectorViaFormIdAndCtrlId(state, formId, ctrlId) {
   return state.forms[formId] ? state.forms[formId][ctrlId] : null;
+}
+
+export function updateFormTitle(formId, data) {
+  return {
+    type: UPDATE_FORM_TITLE,
+    formId,
+    data
+  };
 }

@@ -5,7 +5,8 @@ import FormColTitle from "./FormColTitle";
 import Control from "../Control";
 import {
   createNewControlActionCreator,
-  createNewFormColumnActionCreator
+  createNewFormColumnActionCreator,
+  updateFormTitle
 } from "../../pages/editor/Editor.state";
 
 class FormColumn extends Component {
@@ -18,8 +19,10 @@ class FormColumn extends Component {
   }
 
   handleTitleInput = e => {
+    const title = e.target.textContent.trim();
+    this.props.updateFormTitle(this.formId, title);
     this.setState({
-      doNotShowPlaceholder: !!e.target.textContent.trim()
+      doNotShowPlaceholder: !!title
     });
   };
 
@@ -60,7 +63,8 @@ class FormColumn extends Component {
 
 const mapDispatchToProps = {
   createNewControlActionCreator,
-  createNewFormColumnActionCreator
+  createNewFormColumnActionCreator,
+  updateFormTitle
 };
 
 export default connect(

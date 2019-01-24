@@ -9,8 +9,9 @@ import {
 } from "./PropertiesPanel.state";
 
 const TEXT_INPUT_TYPES = [
-  { type: "date", desc: "Date" },
-  { type: "currency", desc: "Currency" }
+  { type: "text", desc: "Text input" },
+  { type: "date", desc: "Date" }
+  // { type: "currency", desc: "Currency" }
 ];
 
 class PropertiesPanel extends Component {
@@ -19,12 +20,19 @@ class PropertiesPanel extends Component {
   handleSelectedItem = ({ type }) => {
     if (type === "date") {
       this.setState({ showDateFormatSelections: true });
+    } else {
+      this.setState({ showDateFormatSelections: false });
+      // TODO: temporary code for MVP
+      this.props.setInputFormat({
+        pattern: "",
+        type: "text",
+        charset: "",
+        placeholder: ""
+      });
     }
   };
 
   handleSelectedFormatting = config => {
-    // TODO: pass config to formId -> ctrlId via redux action creator
-    // access control object in reducer via its 'state' value
     this.props.setInputFormat(config);
   };
 
@@ -78,11 +86,21 @@ class PropertiesPanel extends Component {
               </Button>
               <h5>Custom</h5>
               <input type="text" onChange={this.props.setAdvancedInputFormat} />
+              <ul>
+                <li className="item">Type 'x' to signify number characters</li>
+                <li className="item">
+                  Type '_' to signify alphabets characters
+                </li>
+                <li className="item">Press 'space' to enforce space</li>
+              </ul>
             </div>
           )}
         </aside>
         <style jsx>
           {`
+            .item {
+              display: list-item;
+            }
             aside {
               position: fixed;
               right: 0;
