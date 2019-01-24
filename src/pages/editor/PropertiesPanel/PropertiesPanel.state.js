@@ -45,3 +45,32 @@ export function setInputFormat(config) {
     });
   };
 }
+
+export function setAdvancedInputFormat(e) {
+  let { value } = e.target;
+  let newValue = "";
+  // reduces all spaces to single space
+  value = value.replace(/^\s+|\s+$/g, " ");
+
+  // only allows characters x, _, and whitespace
+  for (let i = 0; i < value.length; i++) {
+    if (value[i].match(/[x_\s]/i)) {
+      newValue += value[i];
+    }
+  }
+
+  // update the advanced input masking box
+  e.target.value = newValue;
+
+  return (dispatch, getState) => {
+    const state = getState();
+    const { formId, ctrlId } = state.activeControl;
+
+    dispatch({
+      type: SET_TEXT_MASKING,
+      formId,
+      ctrlId,
+      config: { placeholder: newValue }
+    });
+  };
+}

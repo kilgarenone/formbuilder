@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import Dropdown from "components/Dropdown";
 import { connect } from "react-redux";
 import Button from "components/Button";
-import { controlSelector, setInputFormat } from "./PropertiesPanel.state";
+import {
+  controlSelector,
+  setInputFormat,
+  setAdvancedInputFormat
+} from "./PropertiesPanel.state";
 
 const TEXT_INPUT_TYPES = [
   { type: "date", desc: "Date" },
@@ -18,7 +22,7 @@ class PropertiesPanel extends Component {
     }
   };
 
-  handleSelectedFormating = config => {
+  handleSelectedFormatting = config => {
     // TODO: pass config to formId -> ctrlId via redux action creator
     // access control object in reducer via its 'state' value
     this.props.setInputFormat(config);
@@ -44,19 +48,37 @@ class PropertiesPanel extends Component {
             </div>
           )}
           {this.state.showDateFormatSelections && (
-            <Button
-              type="button"
-              title="2 digits days, months, and 4 digits year"
-              item={{
-                placeholder: `MM/DD/YYYY`,
-                // eslint-disable-next-line no-useless-escape
-                pattern: `(1[0-2]|0[1-9])/\d\d\d\d`,
-                type: `date`
-              }}
-              onClick={this.handleSelectedFormating}
-            >
-              <span>DD/MM/YYY</span>
-            </Button>
+            <div>
+              <h4>Masking</h4>
+              <Button
+                type="button"
+                title="2 digits days, months, and 4 digits year"
+                item={{
+                  placeholder: `MM/DD/YYYY`,
+                  // eslint-disable-next-line no-useless-escape
+                  pattern: `(1[0-2]|0[1-9])/\d\d/\d\d\d\d`,
+                  type: `date`
+                }}
+                onClick={this.handleSelectedFormatting}
+              >
+                <span>MM/DD/YYYY</span>
+              </Button>
+              <Button
+                type="button"
+                title="2 digits months, and 2 digits year"
+                item={{
+                  placeholder: `MM/YY`,
+                  // eslint-disable-next-line no-useless-escape
+                  pattern: `(1[0-2]|0[1-9])\/\d\d`,
+                  type: `date`
+                }}
+                onClick={this.handleSelectedFormatting}
+              >
+                <span>MM/YY</span>
+              </Button>
+              <h5>Custom</h5>
+              <input type="text" onChange={this.props.setAdvancedInputFormat} />
+            </div>
           )}
         </aside>
         <style jsx>
@@ -83,7 +105,8 @@ function mapStateToProps(state, ownProps) {
 }
 
 const mapDispatchToProps = {
-  setInputFormat
+  setInputFormat,
+  setAdvancedInputFormat
 };
 
 export default connect(

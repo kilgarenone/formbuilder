@@ -59,7 +59,7 @@ export default class ToolBox extends Component {
                 <Tool
                   key={tool.type}
                   item={tool}
-                  name={tool.displayName}
+                  name={tool.desc}
                   handleSelectedTool={handleSelectedTool}
                 />
               ))}

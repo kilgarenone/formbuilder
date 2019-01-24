@@ -38,7 +38,7 @@ class Dropdown extends Component {
           <div className="dropdown-menu" role="menu">
             {this.props.items.map(item => (
               <ButtonItem
-                key={item.key}
+                key={item.type}
                 item={item}
                 type="button"
                 onClick={this.handleSelectedItem}

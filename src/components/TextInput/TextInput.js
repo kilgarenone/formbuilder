@@ -9,6 +9,12 @@ class TextInput extends Component {
     this.inputShell = React.createRef();
   }
 
+  componentDidUpdate() {
+    // TODO: dynamic convert current text to new masking set
+    this.input.current.value = "";
+    // this.input.current.focus();
+  }
+
   handleCurrentChange = e => {
     const target = this.input.current;
     const isCharsetPresent = ""; // TODO: set your custom masking pattern
@@ -101,7 +107,7 @@ class TextInput extends Component {
               : this.handleNormalTextChange
           }
           className="cmp-text__input"
-          pattern={control.pattern ? control.pattern : false}
+          pattern={control.pattern ? control.pattern : undefined}
           id="world"
         />
         <style jsx>
