@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
-    "package-refresh": "rm -rf node_modules && rm -rf package-lock.json && npm i"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "build": "cross-env NODE_ENV=production webpack",
+    "package-refresh": "rm -rf node_modules && rm -rf package-lock.json && npm i",
+    "lint": "eslint ./src/**/**.js",
+    "lint:fix": "eslint ./src/**/**.js --fix"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,7 @@
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^1.0.0",
+    "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "eslint": "^5.12.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -50,6 +53,7 @@
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
+    "webpack-jarvis": "^0.3.2",
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {

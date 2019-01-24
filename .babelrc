@@ -1,10 +1,11 @@
 {
   "presets": [
     [
-      "@babel/preset-env",
-      {
-        "modules": false
-      }
+      "@babel/preset-env"
+      // TODO: 1) npm i  @babel/polyfill 2) import '@babel/polyfill' 3) uncomment below
+      // {
+      //   "useBuiltIns": 'entry',
+      // }
     ],
     "@babel/preset-react"
   ],
