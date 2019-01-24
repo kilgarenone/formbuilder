@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { controlSelectorViaFormIdAndCtrlId } from "../../pages/editor/Editor.state";
+import conformInputToMasking, {
+  updateInputShellValue
+} from "../../lib/inputMasking";
 
 class TextInput extends Component {
   constructor(props) {
@@ -15,73 +18,19 @@ class TextInput extends Component {
     // this.input.current.focus();
   }
 
-  handleCurrentChange = e => {
-    const target = this.input.current;
-    const isCharsetPresent = this.props.control.charset; // TODO: set your custom masking pattern
-    const maskedNumber = "xXMDY";
-    const maskedLetter = "_";
-    const placeholder = isCharsetPresent || this.props.control.placeholder;
-    const placeholderLength = placeholder.length;
-    const { value } = target;
-    let newValue = "";
-
-    const strippedValue = isCharsetPresent
-      ? value.replace(/\W/g, "") // only keeps A-Z, a-z, 0-9, _
-      : value.replace(/\D/g, ""); // only keeps 0-9 (digits)
-
-    for (let i = 0, j = 0; i < placeholderLength; i++) {
-      // break if no characters left and the pattern is non-special character
-      if (strippedValue[j] === undefined) {
-        break;
-      }
-      const parseAsIntVal = parseInt(strippedValue[j], 10);
-
-      const valueIsInt =
-        typeof parseAsIntVal === "number" && parseAsIntVal % 1 === 0;
-      const valueIsLetter = strippedValue[j]
-        ? strippedValue[j].match(/[A-Z]/i)
-        : false;
-
-      const matchesMaskedNumberSym = maskedNumber.indexOf(placeholder[i]) >= 0;
-      const matchesMaskedLetterSym = maskedLetter.indexOf(placeholder[i]) >= 0;
-
-      if (
-        (matchesMaskedNumberSym && valueIsInt) ||
-        (isCharsetPresent && matchesMaskedLetterSym && valueIsLetter)
-      ) {
-        // eslint-disable-next-line no-plusplus
-        newValue += strippedValue[j++];
-      } else if (
-        (!isCharsetPresent && !valueIsInt && matchesMaskedNumberSym) ||
-        (isCharsetPresent &&
-          ((matchesMaskedLetterSym && !valueIsLetter) ||
-            (matchesMaskedNumberSym && !valueIsInt)))
-      ) {
-        // user is typing characters in 'maskedNumber' & 'maskedLetter
-        // this.options.onError( e ); // write your own error handling function
-        return newValue;
-      } else {
-        // user
-        newValue += placeholder[i];
-      }
-    }
-    return newValue;
-  };
-
-  updateShellValue = () => {
-    const { value } = this.input.current;
-    this.inputShell.current.innerHTML = `<i>${value}</i>${this.props.control.placeholder.substring(
-      value.length
-    )}`;
-  };
-
   handleInputChange = () => {
-    this.input.current.value = this.handleCurrentChange();
-    this.updateShellValue();
-  };
+    const { placeholder, charset } = this.props;
 
-  handleNormalTextChange = e => {
-    console.log("normal", e.target.value);
+    this.input.current.value = conformInputToMasking(
+      this.input.current.value,
+      placeholder,
+      charset
+    );
+
+    this.inputShell.current.innerHTML = updateInputShellValue(
+      this.input.current.value,
+      placeholder
+    );
   };
 
   render() {
@@ -102,9 +51,7 @@ class TextInput extends Component {
           type={control.type}
           ref={this.input}
           onChange={
-            control.pattern || control.charset
-              ? this.handleInputChange
-              : this.handleNormalTextChange
+            control.pattern || control.charset ? this.handleInputChange : null
           }
           className="cmp-text__input"
           pattern={control.pattern ? control.pattern : undefined}
