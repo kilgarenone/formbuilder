@@ -32,8 +32,8 @@ module.exports = {
         collapseWhitespace: true,
         preserveLineBreaks: true,
         minifyURLs: true,
-        removeComments: true,
-        removeAttributeQuotes: true
+        removeComments: true
+        // removeAttributeQuotes: true
       }
     })
   ]

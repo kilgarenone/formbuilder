@@ -11,13 +11,13 @@ const PORT = process.env.PORT || 3006;
 const app = express();
 
 // tell Express to serve contents from the build directory as static files.
-app.use(express.static(path.resolve(__dirname, "../", "build")));
+app.use(express.static("./build"));
 
 app.get("/", (req, res) => {
   const jsx = <HelloWorld />;
   const reactDom = ReactDOMServer.renderToString(jsx); // convert to HTML string
 
-  const indexFile = path.resolve(__dirname, "../", "/build", "index.html");
+  const indexFile = path.resolve("./build/index.html");
   fs.readFile(indexFile, "utf8", (err, data) => {
     if (err) {
       console.error("Something went wrong:", err);
@@ -32,5 +32,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`😎 Server is listening on port ${PORT}`);
+  console.log(`😎  Server is listening on port ${PORT}`);
 });
