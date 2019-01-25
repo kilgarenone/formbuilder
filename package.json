@@ -9,7 +9,10 @@
     "build": "cross-env NODE_ENV=production webpack",
     "package-refresh": "rm -rf node_modules && rm -rf package-lock.json && npm i",
     "lint": "eslint ./src/**/**.js",
-    "lint:fix": "eslint ./src/**/**.js --fix"
+    "lint:fix": "eslint ./src/**/**.js --fix",
+    "dev:build-server": "cross-env NODE_ENV=development webpack --config webpack.server.js --mode=development -w",
+    "dev:start": "nodemon ./server-build/index.js",
+    "dev": "npm-run-all --parallel build dev:*"
   },
   "keywords": [],
   "author": "",
@@ -38,6 +41,8 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.5.0",
+    "nodemon": "^1.18.9",
+    "npm-run-all": "^4.1.5",
     "postcss-custom-properties": "^8.0.9",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.5.0",
@@ -54,9 +59,11 @@
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-jarvis": "^0.3.2",
-    "webpack-merge": "^4.2.1"
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "react": "^16.7.0",
