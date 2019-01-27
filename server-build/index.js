@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/components/testInput.js":
+/*!*************************************!*\
+  !*** ./src/components/testInput.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return HelloWorld; });\n/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-jsx/style */ \"styled-jsx/style\");\n/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n\n\nfunction HelloWorld(_ref) {\n  var name = _ref.name;\n  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(\"h1\", {\n    className: \"jsx-1342208009\"\n  }, name, \" Hello broman\"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {\n    id: \"1342208009\"\n  }, \".jsx-1342208009{color:blue;}\"));\n}\n\n//# sourceURL=webpack:///./src/components/testInput.js?");
+
+/***/ }),
+
 /***/ "./src/server.js":
 /*!***********************!*\
   !*** ./src/server.js ***!
@@ -94,7 +106,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\n\nvar HelloWorld = function HelloWorld() {\n  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(\"h1\", null, \"Hellow you magnificent bastard\");\n};\n\nvar PORT = process.env.PORT || 3006;\nvar app = express__WEBPACK_IMPORTED_MODULE_2___default()(); // tell Express to serve contents from the build directory as static files.\n\napp.use(express__WEBPACK_IMPORTED_MODULE_2___default.a.static(\"./build\"));\napp.get(\"/\", function (req, res) {\n  var jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(HelloWorld, null);\n  var reactDom = react_dom_server__WEBPACK_IMPORTED_MODULE_4___default.a.renderToString(jsx); // convert to HTML string\n\n  var indexFile = path__WEBPACK_IMPORTED_MODULE_0___default.a.resolve(\"./build/index.html\");\n  fs__WEBPACK_IMPORTED_MODULE_1___default.a.readFile(indexFile, \"utf8\", function (err, data) {\n    if (err) {\n      console.error(\"Something went wrong:\", err);\n      return res.status(500).send(\"Oops, better luck next time!\");\n    }\n\n    return res.send(data.replace('<div id=\"root\"></div>', \"<div id=\\\"root\\\">\".concat(reactDom, \"</div>\")));\n  }); // res.writeHead(200, { \"Content-Type\": \"text/html\" });\n});\napp.listen(PORT, function () {\n  console.log(\"\\uD83D\\uDE0E  Server is listening on port \".concat(PORT));\n});\n\n//# sourceURL=webpack:///./src/server.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var styled_jsx_server__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-jsx/server */ \"styled-jsx/server\");\n/* harmony import */ var styled_jsx_server__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_server__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _components_testInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/testInput */ \"./src/components/testInput.js\");\n\n\n\n\n\n\n\nvar PORT = process.env.PORT || 3006;\nvar app = express__WEBPACK_IMPORTED_MODULE_2___default()(); // tell Express to serve contents from the build directory as static files.\n// app.use(express.static(path.resolve(\"./build\")));\n\napp.get(\"/*\", function (req, res) {\n  var markup = react_dom_server__WEBPACK_IMPORTED_MODULE_4___default.a.renderToString(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_testInput__WEBPACK_IMPORTED_MODULE_6__[\"default\"], {\n    name: \"damn man\"\n  }));\n  var styles = styled_jsx_server__WEBPACK_IMPORTED_MODULE_5___default()();\n  var html = react_dom_server__WEBPACK_IMPORTED_MODULE_4___default.a.renderToStaticMarkup(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(\"html\", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(\"head\", null, styles), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(\"body\", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(\"div\", {\n    id: \"root\",\n    dangerouslySetInnerHTML: {\n      __html: markup\n    }\n  }))));\n  res.end(\"<!doctype html>\".concat(html));\n});\napp.listen(PORT, function () {\n  console.log(\"\\uD83D\\uDE0E  Server is listening on port \".concat(PORT));\n});\n\n//# sourceURL=webpack:///./src/server.js?");
 
 /***/ }),
 
@@ -150,6 +162,28 @@ eval("module.exports = require(\"react\");\n\n//# sourceURL=webpack:///external_
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"react-dom/server\");\n\n//# sourceURL=webpack:///external_%22react-dom/server%22?");
+
+/***/ }),
+
+/***/ "styled-jsx/server":
+/*!************************************!*\
+  !*** external "styled-jsx/server" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"styled-jsx/server\");\n\n//# sourceURL=webpack:///external_%22styled-jsx/server%22?");
+
+/***/ }),
+
+/***/ "styled-jsx/style":
+/*!***********************************!*\
+  !*** external "styled-jsx/style" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"styled-jsx/style\");\n\n//# sourceURL=webpack:///external_%22styled-jsx/style%22?");
 
 /***/ })
 

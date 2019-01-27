@@ -1,3 +1,14 @@
-export default function HelloWorld() {
-  return <h1>Hello broman</h1>;
+import React from "react";
+
+export default function HelloWorld({ name }) {
+  return (
+    <>
+      <h1>{name} Hello broman</h1>
+      <style jsx>
+        {`
+          color: blue;
+        `}
+      </style>
+    </>
+  );
 }

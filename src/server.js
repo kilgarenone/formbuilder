@@ -3,32 +3,29 @@ import fs from "fs";
 
 import express from "express";
 import React from "react";
-import ReactDOMServer from "react-dom/server";
+import ReactDOM from "react-dom/server";
+import flush from "styled-jsx/server";
 
-const HelloWorld = () => <h1>Hellow you magnificent bastard</h1>;
+import TestInput from "./components/testInput";
 
 const PORT = process.env.PORT || 3006;
 const app = express();
 
 // tell Express to serve contents from the build directory as static files.
-app.use(express.static("./build"));
+// app.use(express.static(path.resolve("./build")));
 
-app.get("/", (req, res) => {
-  const jsx = <HelloWorld />;
-  const reactDom = ReactDOMServer.renderToString(jsx); // convert to HTML string
-
-  const indexFile = path.resolve("./build/index.html");
-  fs.readFile(indexFile, "utf8", (err, data) => {
-    if (err) {
-      console.error("Something went wrong:", err);
-      return res.status(500).send("Oops, better luck next time!");
-    }
-
-    return res.send(
-      data.replace('<div id="root"></div>', `<div id="root">${reactDom}</div>`)
-    );
-  });
-  // res.writeHead(200, { "Content-Type": "text/html" });
+app.get("/*", (req, res) => {
+  const markup = ReactDOM.renderToString(<TestInput name="damn man" />);
+  const styles = flush();
+  const html = ReactDOM.renderToStaticMarkup(
+    <html>
+      <head>{styles}</head>
+      <body>
+        <div id="root" dangerouslySetInnerHTML={{ __html: markup }} />
+      </body>
+    </html>
+  );
+  res.end(`<!doctype html>${html}`);
 });
 
 app.listen(PORT, () => {
