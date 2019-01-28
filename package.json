@@ -11,7 +11,7 @@
     "lint": "eslint ./src/**/**.js",
     "lint:fix": "eslint ./src/**/**.js --fix",
     "dev:build-server": "cross-env NODE_ENV=development webpack --config webpack.server.js --mode=development --watch",
-    "dev:start": "nodemon ./server-build/index.js",
+    "dev:start": "nodemon ./server_build/index.js",
     "dev": "npm-run-all --parallel build dev:*"
   },
   "keywords": [],
