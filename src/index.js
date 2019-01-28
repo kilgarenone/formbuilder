@@ -1,5 +1,5 @@
 import React from "react";
-import { hydrate } from "react-dom";
+import { render } from "react-dom";
 import { Provider } from "react-redux";
 
 import Editor from "./pages/editor/Editor";
@@ -8,7 +8,7 @@ import configureStore from "./redux/configureStore";
 const store = configureStore();
 
 const renderApp = () =>
-  hydrate(
+  render(
     <Provider store={store}>
       <Editor />
     </Provider>,

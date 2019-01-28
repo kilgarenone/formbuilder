@@ -15,7 +15,7 @@ const app = express();
 // app.use(express.static(path.resolve("./build")));
 
 app.get("/*", (req, res) => {
-  const markup = ReactDOM.renderToString(<TestInput name="damn man" />);
+  const markup = ReactDOM.renderToStaticMarkup(<TestInput name="damn man" />);
   const styles = flush();
   const html = ReactDOM.renderToStaticMarkup(
     <html>

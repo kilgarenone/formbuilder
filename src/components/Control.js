@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import debounce from "lodash.debounce";
 import { connect } from "react-redux";
-import TextInput from "./TextInput/TextInput";
+import Label from "components/Label";
+import TextInputContainer from "./TextInput/TextInputContainer";
 import { setControlLabel } from "../pages/editor/Editor.state";
 import { setActiveControl } from "../pages/editor/PropertiesPanel/PropertiesPanel.state";
 
@@ -12,7 +13,7 @@ class Control extends Component {
     this.state = { doNotShowLabelPlaceholder: false };
   }
 
-  editLabel = e => {
+  handleClickInLabel = e => {
     e.preventDefault();
   };
 
@@ -27,7 +28,7 @@ class Control extends Component {
     this.handleLabelInput(label);
   };
 
-  handleKeyPress = e => {
+  handleKeyPressInLabel = e => {
     // prevents entering into newline in contentEditable
     if (e.charCode === 13) {
       e.preventDefault();
@@ -53,7 +54,7 @@ class Control extends Component {
   getControlComponent = type => {
     let component;
     if (type === "text") {
-      component = <TextInput {...this.props} />;
+      component = <TextInputContainer {...this.props} />;
     }
 
     return component;
@@ -76,18 +77,14 @@ class Control extends Component {
         onKeyUp={this.handleKeyUp}
         onClick={this.handleClickedControl}
       >
-        <label
-          contentEditable
-          onPaste={this.handlePasteInLabel}
-          onKeyPress={this.handleKeyPress}
-          onClick={this.editLabel}
-          onInput={this.handleLabelInputDebounced}
-          spellCheck="false"
-          htmlFor="world"
-          suppressContentEditableWarning
-        >
-          {!this.state.doNotShowLabelPlaceholder && <span>Label</span>}
-        </label>
+        <Label
+          isContentEditable
+          handlePasteInLabel={this.handlePasteInLabel}
+          handleKeyPressInLabel={this.handleKeyPressInLabel}
+          handleClickInLabel={this.handleClickInLabel}
+          handleInputInLabel={this.handleLabelInputDebounced}
+          doNotShowLabelPlaceholder={this.state.doNotShowLabelPlaceholder}
+        />
         {component}
         <style jsx>
           {`
@@ -97,23 +94,6 @@ class Control extends Component {
 
             .control.active {
               outline: 2px solid blue;
-            }
-
-            label {
-              position: relative;
-              display: block;
-              min-height: 2rem;
-            }
-
-            label > :global(br) {
-              display: none;
-            }
-
-            span {
-              position: absolute;
-              top: 0;
-              color: #b3b3b1;
-              pointer-events: none;
             }
           `}
         </style>
