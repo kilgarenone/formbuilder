@@ -9,7 +9,9 @@ module.exports = {
   ],
   settings: {
     "import/resolver": {
-      webpack: { config: "webpack.common.js" } // make eslint respect our 'resolve' aliases defined in webpack.common.js
+      webpack: {
+        config: "./config/webpack/webpack.common.js"
+      } // make eslint respect our 'resolve' aliases defined in webpack.common.js
     }
   },
   rules: {
