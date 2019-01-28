@@ -1,5 +1,5 @@
 node_modules
 build
-server-build
+server_build
 public
 .DS_Store
