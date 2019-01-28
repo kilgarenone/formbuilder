@@ -15,9 +15,9 @@ const forms = [
   { label: "world", pattern: "/d/" }
 ];
 // tell Express to serve contents from the build directory as static files.
-// app.use(express.static(path.resolve("./build")));
+app.use(express.static(path.resolve("public")));
 
-app.get("/*", (req, res) => {
+app.get("/", (req, res) => {
   const markup = ReactDOM.renderToStaticMarkup(
     <ClientFormGenerator forms={forms} />
   );
