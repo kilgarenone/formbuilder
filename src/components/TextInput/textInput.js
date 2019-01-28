@@ -1,4 +1,5 @@
 import React from "react";
+import Label from "components/Label";
 
 export default function TextInput({
   control,
@@ -8,6 +9,7 @@ export default function TextInput({
 }) {
   return (
     <div>
+      {!inputRef && <Label>{control.label}</Label>}
       {control.placeholder && (
         <span className="flex-xy-center" ref={inputShellRef} aria-hidden="true">
           {control.placeholder}

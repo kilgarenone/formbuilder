@@ -1,11 +1,11 @@
 import React from "react";
 
 export default function Label({
-  handlePasteInLabel,
-  handleKeyPressInLabel,
-  handleClickInLabel,
-  handleInputInLabel,
-  doNotShowLabelPlaceholder,
+  handlePasteInLabel = null,
+  handleKeyPressInLabel = null,
+  handleClickInLabel = null,
+  handleInputInLabel = null,
+  doNotShowLabelPlaceholder = null,
   isContentEditable = null,
   children
 }) {

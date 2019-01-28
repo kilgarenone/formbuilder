@@ -5,17 +5,22 @@ import express from "express";
 import React from "react";
 import ReactDOM from "react-dom/server";
 import flush from "styled-jsx/server";
-
-import TestInput from "./components/testInput";
+import ClientFormGenerator from "./components/ClientFormGenerator";
 
 const PORT = process.env.PORT || 3006;
 const app = express();
 
+const forms = [
+  { label: "helo", pattern: "/d/" },
+  { label: "world", pattern: "/d/" }
+];
 // tell Express to serve contents from the build directory as static files.
 // app.use(express.static(path.resolve("./build")));
 
 app.get("/*", (req, res) => {
-  const markup = ReactDOM.renderToStaticMarkup(<TestInput name="damn man" />);
+  const markup = ReactDOM.renderToStaticMarkup(
+    <ClientFormGenerator forms={forms} />
+  );
   const styles = flush();
   const html = ReactDOM.renderToStaticMarkup(
     <html>

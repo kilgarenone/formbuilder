@@ -55,3 +55,9 @@ export default function conformInputToMasking(
 export function updateInputShellValue(currentValue, placeholder) {
   return `<i>${currentValue}</i>${placeholder.substring(currentValue.length)}`;
 }
+
+export class ClientInputMasking {
+  constructor() {
+    alert("helloooooo client!");
+  }
+}
