@@ -57,7 +57,7 @@ export function updateInputShellValue(currentValue, placeholder) {
 }
 
 export class ClientInputMasking {
-  constructor() {
+  constructor() { 
     alert("helloooooo testing for real!");
   }
 }
