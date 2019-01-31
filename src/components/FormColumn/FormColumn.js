@@ -50,6 +50,9 @@ class FormColumn extends Component {
   render() {
     return (
       <div>
+        <a href="https://mariya.eu.auth0.com/authorize?response_type=id_token token&scope=openid email&client_id=XiO2cMOTID36uksOAmPC4Nv85VukxZOc&connection=google-oauth2&redirect_uri=http://localhost:8080">
+          Signup
+        </a>
         <FormColTitle
           handleTitleInput={this.handleTitleInput}
           doNotShowPlaceholder={this.state.doNotShowPlaceholder}
