@@ -1,4 +1,4 @@
-export default function randomString(length = 16) {
+export function randomString(length = 16) {
   const charset =
     "0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~";
   let result = "";

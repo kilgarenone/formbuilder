@@ -9,7 +9,6 @@ import { flushToHTML } from "styled-jsx/server";
 import helmet from "helmet";
 import morgan from "morgan";
 import jwt from "express-jwt";
-import jwksRsa from "jwks-rsa";
 
 import ClientFormGenerator from "./components/ClientFormGenerator";
 

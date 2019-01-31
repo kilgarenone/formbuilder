@@ -12,6 +12,7 @@ module.exports = {
   },
   devServer: {
     contentBase: paths.outputPath,
+    historyApiFallback: true,
     // compress: true, // gZip compression
     // historyApiFallback: true
     hot: true // enable hot module replacement (HMR), no refreshing -> keeps states/variables
