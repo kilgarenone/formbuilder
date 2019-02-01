@@ -26,7 +26,7 @@ module.exports = {
     ]
   },
   plugins: [
-    // always deletes the dist folder first in each dev or prod run
+    // always deletes the dist folder first in each prod run
     new CleanWebpackPlugin([paths.outputPath.split("/").pop()], {
       root: paths.root
     }),
