@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 
 import Editor from "./pages/editor/Editor";
 import configureStore from "./redux/configureStore";
-import AuthCallback from "./components/AuthCallback";
 
 const store = configureStore();
 
@@ -14,7 +13,6 @@ const renderApp = () =>
     <Provider store={store}>
       <Router>
         <Editor path="/" />
-        <AuthCallback path="callback" />
       </Router>
     </Provider>,
     document.getElementById("root")

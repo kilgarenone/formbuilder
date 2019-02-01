@@ -10,12 +10,11 @@ import helmet from "helmet";
 import morgan from "morgan";
 import jwt from "express-jwt";
 import fetch from "node-fetch";
-import dotenv from "dotenv";
 
 import ClientFormGenerator from "./components/ClientFormGenerator";
 
 const server = express();
-console.log(process.env.PORT);
+
 server.use(helmet());
 server.use(bodyParser.json());
 server.use(cors());

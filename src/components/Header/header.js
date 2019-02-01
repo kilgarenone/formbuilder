@@ -1,5 +1,4 @@
 import React from "react";
-import Signup from "../Signup";
 
 function Header() {
   return (
@@ -7,7 +6,6 @@ function Header() {
       <ul className="navbar-items">
         <li className="navbar-item">New form</li>
         <li className="navbar-item">Next item</li>
-        <Signup />
       </ul>
       <style jsx>
         {`
