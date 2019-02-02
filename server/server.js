@@ -9,9 +9,23 @@ import { flushToHTML } from "styled-jsx/server";
 import helmet from "helmet";
 import morgan from "morgan";
 import jwt from "express-jwt";
+import jwksRsa from "jwks-rsa";
 import fetch from "node-fetch";
 
 import ClientFormGenerator from "components/ClientFormGenerator";
+import goFetch from "./fetch";
+
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `${process.env.AUTH0_API_BASEURL}/.well-known/jwks.json`
+  }),
+  audience: process.env.AUTH0_API_IDENTIFIER,
+  issuer: process.env.AUTH0_API_BASEURL,
+  algorithms: ["RS256"]
+});
 
 const server = express();
 
@@ -27,7 +41,11 @@ const forms = [
 // tell Express to serve contents from the build directory as static files.
 server.use(express.static(path.resolve("public")));
 
-server.get("/callback", (req, res) => {
+server.get("/private", checkJwt, (req, res) => {
+  res.json({ message: "hello private" });
+});
+
+server.get("/callback", async (req, res) => {
   const body = {
     grant_type: "authorization_code",
     code: req.query.code,
@@ -36,16 +54,18 @@ server.get("/callback", (req, res) => {
     redirect_uri: process.env.AUTH0_REDIRECT_URI
   };
 
-  fetch(`${process.env.AUTH0_API_BASEURL}/oauth/token`, {
-    method: "post",
-    body: JSON.stringify(body),
-    headers: { "Content-Type": "application/json" }
-  })
-    .then(res => res.json())
-    .then(json => {
-      console.log("auto0 res", json);
-      res.redirect(process.env.AUTH0_REDIRECT_SPA);
-    });
+  const response = await goFetch(
+    `${process.env.AUTH0_API_BASEURL}/oauth/token`,
+    {
+      method: "post",
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" }
+    }
+  );
+
+  console.log("auto0 auth callback response", response);
+  // res.cookie('access_token' ,, {expires: s});
+  res.redirect(process.env.AUTH0_REDIRECT_SPA);
 });
 
 server.get("/", (req, res) => {
@@ -65,7 +85,7 @@ server.get("/", (req, res) => {
   // );
 });
 
-const PORT = process.env.PORT || 3006;
+const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
   console.log(`😎  Server is listening on port ${PORT}`);
