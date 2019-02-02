@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
-    server: "./src/server.js",
+    server: "./server/server.js",
     client: "./src/lib/client.js"
   },
   target: "node", // tells webpack not to touch any built-in modules like fs or path.

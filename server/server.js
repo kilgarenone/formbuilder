@@ -11,7 +11,7 @@ import morgan from "morgan";
 import jwt from "express-jwt";
 import fetch from "node-fetch";
 
-import ClientFormGenerator from "./components/ClientFormGenerator";
+import ClientFormGenerator from "components/ClientFormGenerator";
 
 const server = express();
 
