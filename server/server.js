@@ -10,7 +10,6 @@ import helmet from "helmet";
 import morgan from "morgan";
 import jwt from "express-jwt";
 import jwksRsa from "jwks-rsa";
-import fetch from "node-fetch";
 
 import ClientFormGenerator from "components/ClientFormGenerator";
 import goFetch from "./fetch";
@@ -23,7 +22,7 @@ const checkJwt = jwt({
     jwksUri: `${process.env.AUTH0_API_BASEURL}/.well-known/jwks.json`
   }),
   audience: process.env.AUTH0_API_IDENTIFIER,
-  issuer: process.env.AUTH0_API_BASEURL,
+  issuer: `${process.env.AUTH0_API_BASEURL}/`, // needs that forward slash! -_-
   algorithms: ["RS256"]
 });
 
@@ -54,17 +53,14 @@ server.get("/callback", async (req, res) => {
     redirect_uri: process.env.AUTH0_REDIRECT_URI
   };
 
-  const response = await goFetch(
-    `${process.env.AUTH0_API_BASEURL}/oauth/token`,
-    {
-      method: "post",
-      body: JSON.stringify(body),
-      headers: { "Content-Type": "application/json" }
-    }
-  );
+  const response = await goFetch("/oauth/token", {
+    method: "post",
+    body: JSON.stringify(body),
+    headers: { "Content-Type": "application/json" }
+  });
 
   console.log("auto0 auth callback response", response);
-  // res.cookie('access_token' ,, {expires: s});
+  res.cookie("access_token", response.access_token);
   res.redirect(process.env.AUTH0_REDIRECT_SPA);
 });
 
