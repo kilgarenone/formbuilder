@@ -10,6 +10,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import jwt from "express-jwt";
 import jwksRsa from "jwks-rsa";
+import querystring from "querystring";
 
 import ClientFormGenerator from "components/ClientFormGenerator";
 import goFetch from "./fetch";
@@ -28,9 +29,15 @@ const checkJwt = jwt({
 
 const server = express();
 
+server.use(cors());
+
 server.use(helmet());
 server.use(bodyParser.json());
-server.use(cors());
+server.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 server.use(morgan("combined"));
 
 const forms = [
@@ -41,6 +48,7 @@ const forms = [
 server.use(express.static(path.resolve("public")));
 
 server.get("/private", checkJwt, (req, res) => {
+  console.log(req);
   res.json({ message: "hello private" });
 });
 
@@ -61,7 +69,12 @@ server.get("/callback", async (req, res) => {
 
   console.log("auto0 auth callback response", response);
   res.cookie("access_token", response.access_token);
-  res.redirect(process.env.AUTH0_REDIRECT_SPA);
+  res.redirect(
+    303,
+    `${process.env.AUTH0_REDIRECT_SPA}#${querystring.stringify({
+      expires_in: response.expires_in
+    })}`
+  );
 });
 
 server.get("/", (req, res) => {
