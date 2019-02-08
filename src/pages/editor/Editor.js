@@ -12,7 +12,9 @@ export default class Editor extends Component {
   componentDidMount() {
     if (/expires_in/.test(window.location.hash)) {
       const expiresIn = parseUrlHash(window.location.hash).expires_in;
-      window.location.hash = "";
+      // source: https://stackoverflow.com/a/49373716/73323
+      window.history.replaceState(null, null, " ");
+
       // expires_in from auth0 is in seconds. so we multiply it by 1000
       // to convert to milliseconds. lastly, add current unix epoch time.
       // this gives us the unix epoch time when the token will expire
