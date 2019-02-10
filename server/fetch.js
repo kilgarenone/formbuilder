@@ -26,7 +26,11 @@ function checkStatus(response) {
 }
 
 function parseJSON(response) {
-  return response.json();
+  const contentType = response.headers.get("content-type");
+  if (contentType && contentType.indexOf("application/json") !== -1) {
+    return response.json();
+  }
+  return response.text();
 }
 
 export default goFetch;

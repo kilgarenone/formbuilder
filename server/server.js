@@ -52,17 +52,12 @@ server.get("/private", checkJwt, (req, res) => {
   res.json({ message: "hello private" });
 });
 
-server.get("/logout", (req, res) => {
+server.get("/logout", async (req, res) => {
   // removes cookie by setting expires date to the past
   res.cookie("access_token", "", {
     expires: new Date(0),
     path: "/"
   });
-
-  // TODO: redirect back to landing page(?)
-  // res.redirect(`https://mariya.eu.auth0.com/v2/logout?
-  // client_id=${process.env.AUTH0_CLIENT_ID}&
-  // returnTo=http://localhost:8081`);
 });
 
 server.get("/callback", async (req, res) => {
