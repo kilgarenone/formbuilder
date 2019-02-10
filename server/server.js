@@ -60,9 +60,9 @@ server.get("/logout", (req, res) => {
   });
 
   // TODO: redirect back to landing page(?)
-  res.redirect(`https://mariya.eu.auth0.com/v2/logout?
-  client_id=ySfcrTGTrVqdxjB9Cfnbwq3FQPVoTIir&
-  returnTo=http://localhost:8081?federated`);
+  // res.redirect(`https://mariya.eu.auth0.com/v2/logout?
+  // client_id=${process.env.AUTH0_CLIENT_ID}&
+  // returnTo=http://localhost:8081`);
 });
 
 server.get("/callback", async (req, res) => {
