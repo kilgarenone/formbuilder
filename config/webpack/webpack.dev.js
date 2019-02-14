@@ -15,7 +15,8 @@ module.exports = {
     historyApiFallback: true,
     // compress: true, // gZip compression
     // historyApiFallback: true
-    hot: true // enable hot module replacement (HMR), no refreshing -> keeps states/variables
+    hot: true, // enable hot module replacement (HMR), no refreshing -> keeps states/variables
+    stats: "minimal"
   },
   // performance: {
   //   hints: "warning",

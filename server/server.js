@@ -11,9 +11,17 @@ import morgan from "morgan";
 import jwt from "express-jwt";
 import jwksRsa from "jwks-rsa";
 import querystring from "querystring";
-
 import ClientFormGenerator from "components/ClientFormGenerator";
+import initDb from "./initDb";
 import goFetch from "./fetch";
+
+initDb(err => {
+  if (err) {
+    throw err;
+  } else {
+    console.log("couchdb initialized");
+  }
+});
 
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({

@@ -70,6 +70,7 @@
   "dependencies": {
     "@babel/runtime": "^7.3.1",
     "@reach/router": "^1.2.1",
+    "async": "^2.6.2",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
@@ -78,6 +79,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "morgan": "^1.9.1",
+    "nano": "^8.0.0",
     "node-fetch": "^2.3.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
