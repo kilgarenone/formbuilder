@@ -12,14 +12,27 @@ import jwt from "express-jwt";
 import jwksRsa from "jwks-rsa";
 import querystring from "querystring";
 import ClientFormGenerator from "components/ClientFormGenerator";
-import initDb from "./initDb";
+import initDb from "./db/initDb";
 import goFetch from "./fetch";
+import users from "./db/users";
 
 initDb(err => {
   if (err) {
     throw err;
   } else {
     console.log("couchdb initialized");
+    const user = {
+      email: "johndoe@example.com",
+      name: "John Doe",
+      address: "1 Sesame Street"
+    };
+    users.create(user, err => {
+      if (err) {
+        throw err;
+      } else {
+        console.log("user inserted");
+      }
+    });
   }
 });
 

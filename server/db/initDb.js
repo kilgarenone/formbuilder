@@ -1,7 +1,7 @@
 import async from "async";
 import couch from "./db";
 
-const databases = ["test2", "test3"];
+const databases = ["users", "forms"];
 
 export default function initCouch(cb) {
   createDatabases(cb);
