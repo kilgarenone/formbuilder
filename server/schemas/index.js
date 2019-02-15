@@ -18,13 +18,12 @@ export default function validateSchema(schemaName, fn) {
     throw new Error(`Unknown schema: ${schemaName}`);
   }
 
-  return async function validation(doc, cb) {
-    // console.log(schema);
+  return async function validation(doc) {
     try {
       await schema.validate(doc);
-      fn.call(null, doc, cb);
+      await fn.call(null, doc);
     } catch (err) {
-      console.error(`Schema validation of ${schemaName} object failed`, err);
+      throw new Error(err.reason);
     }
   };
 }

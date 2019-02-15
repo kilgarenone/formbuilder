@@ -18,10 +18,18 @@ import users from "./db/users";
 
 async function initDatabase() {
   try {
-    await initDb();
+    // await initDb();
+    const user = {
+      email: "johndoe@example.com",
+      name: "John Doe"
+    };
+    users
+      .create(user)
+      .then(h => console.log("succes", h))
+      .catch(e => console.log("eeee", e));
     console.log("CouchDB databases initialized");
   } catch (err) {
-    console.log("Failed CouchDB databases initialization", err);
+    console.log("Failed CouchDB databases initialization", err.reason);
   }
 }
 

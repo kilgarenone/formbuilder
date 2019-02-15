@@ -3,8 +3,8 @@ import validateSchema from "../schemas/index";
 
 const users = db.use("users");
 
-function createUser(user, cb) {
-  users.insert(user, user.email, cb);
+function createUser(user) {
+  return users.insert(user, user.email);
 }
 
 export default {
