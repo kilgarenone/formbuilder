@@ -16,24 +16,16 @@ import initDb from "./db/initDb";
 import goFetch from "./fetch";
 import users from "./db/users";
 
-initDb(err => {
-  if (err) {
-    throw err;
-  } else {
-    console.log("couchdb initialized");
-    const user = {
-      email: "johndoe@example.com"
-    };
-    users.create(user, err => {
-      if (err) {
-        // TODO: handle 'document update conflict
-        // throw err;
-      } else {
-        console.log("user inserted");
-      }
-    });
+async function initDatabase() {
+  try {
+    await initDb();
+    console.log("CouchDB databases initialized");
+  } catch (err) {
+    console.log("Failed CouchDB databases initialization", err);
   }
-});
+}
+
+initDatabase();
 
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
@@ -120,6 +112,10 @@ server.get("/", (req, res) => {
   //     </body>
   //   </html>
   // );
+});
+
+server.use((error, req, res, next) => {
+  res.json({ message: error.message });
 });
 
 const PORT = process.env.PORT || 3000;

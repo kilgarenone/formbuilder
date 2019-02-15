@@ -1,21 +1,7 @@
-import async from "async";
 import couch from "./db";
 
-const databases = ["users", "forms"];
+const databases = ["users3", "forms3"];
 
-export default function initCouch(cb) {
-  createDatabases(cb);
-}
-
-function createDatabases(cb) {
-  async.each(databases, createDatabase, cb);
-}
-
-function createDatabase(db, cb) {
-  couch.db.create(db, err => {
-    if (err && err.statusCode === 412) {
-      err = null;
-    }
-    cb(err);
-  });
+export default function initDb() {
+  return Promise.all(databases.map(database => couch.db.create(database)));
 }
