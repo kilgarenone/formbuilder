@@ -22,13 +22,12 @@ initDb(err => {
   } else {
     console.log("couchdb initialized");
     const user = {
-      email: "johndoe@example.com",
-      name: "John Doe",
-      address: "1 Sesame Street"
+      email: "johndoe@example.com"
     };
     users.create(user, err => {
       if (err) {
-        throw err;
+        // TODO: handle 'document update conflict
+        // throw err;
       } else {
         console.log("user inserted");
       }
