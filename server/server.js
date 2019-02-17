@@ -12,6 +12,7 @@ import jwt from "express-jwt";
 import jwksRsa from "jwks-rsa";
 import querystring from "querystring";
 import ClientFormGenerator from "components/ClientFormGenerator";
+import Boom from "boom";
 import initDb from "./db/initDb";
 import goFetch from "./fetch";
 import users from "./db/users";
@@ -21,15 +22,15 @@ async function initDatabase() {
     // await initDb();
     const user = {
       email: "johndoe@example.com",
-      name: "John Doe"
+      name: "John Do12332e"
     };
-    users
-      .create(user)
-      .then(h => console.log("succes", h))
-      .catch(e => console.log("eeee", e));
+    console.log(user);
+    const hello = await users.create(user);
     console.log("CouchDB databases initialized");
   } catch (err) {
-    console.log("Failed CouchDB databases initialization", err.reason);
+    // if (err && err.statusCode !== 412) {
+    console.log("Error in initDatabase()", err);
+    // }
   }
 }
 
@@ -67,43 +68,63 @@ const forms = [
 // tell Express to serve contents from the build directory as static files.
 server.use(express.static(path.resolve("public")));
 
+// source: https://thecodebarbarian.com/80-20-guide-to-express-error-handling
+function wrapAsync(fn) {
+  return function wrapAsyncFn(req, res, next) {
+    // Make sure to `.catch()` any errors and pass them along to the `next()`
+    // middleware in the chain, in this case the error handler.
+    fn(req, res, next).catch(next);
+  };
+}
+
 server.get("/private", checkJwt, (req, res) => {
   console.log(req);
   res.json({ message: "hello private" });
 });
 
-server.get("/logout", async (req, res) => {
-  // removes cookie by setting expires date to the past
-  res.cookie("access_token", "", {
-    expires: new Date(0),
-    path: "/"
-  });
-});
+server.get(
+  "/logout",
+  wrapAsync(async (req, res) => {
+    // removes cookie by setting expires date to the past
+    const user = {
+      email: "johndoe@example.com",
+      name: "John Doe"
+    };
+    const hello = await users.create(user);
+    res.cookie("access_token", "", {
+      expires: new Date(0),
+      path: "/"
+    });
+  })
+);
 
-server.get("/callback", async (req, res) => {
-  const body = {
-    grant_type: "authorization_code",
-    code: req.query.code,
-    client_id: process.env.AUTH0_CLIENT_ID,
-    client_secret: process.env.AUTH0_SECRET,
-    redirect_uri: process.env.AUTH0_REDIRECT_URI
-  };
+server.get(
+  "/callback",
+  wrapAsync(async (req, res) => {
+    const body = {
+      grant_type: "authorization_code",
+      code: req.query.code,
+      client_id: process.env.AUTH0_CLIENT_ID,
+      client_secret: process.env.AUTH0_SECRET,
+      redirect_uri: process.env.AUTH0_REDIRECT_URI
+    };
 
-  const response = await goFetch("/oauth/token", {
-    method: "post",
-    body: JSON.stringify(body),
-    headers: { "Content-Type": "application/json" }
-  });
+    const response = await goFetch("/oauth/token", {
+      method: "post",
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" }
+    });
 
-  console.log("auto0 auth callback response", response);
-  res.cookie("access_token", response.access_token);
-  res.redirect(
-    303,
-    `${process.env.AUTH0_REDIRECT_SPA}#${querystring.stringify({
-      expires_in: response.expires_in
-    })}`
-  );
-});
+    console.log("auto0 auth callback response", response);
+    res.cookie("access_token", response.access_token);
+    res.redirect(
+      303,
+      `${process.env.AUTH0_REDIRECT_SPA}#${querystring.stringify({
+        expires_in: response.expires_in
+      })}`
+    );
+  })
+);
 
 server.get("/", (req, res) => {
   // res.redirect("http://localhost:8080");
@@ -123,6 +144,7 @@ server.get("/", (req, res) => {
 });
 
 server.use((error, req, res, next) => {
+  console.log("Error in error handler", error);
   res.json({ message: error.message });
 });
 

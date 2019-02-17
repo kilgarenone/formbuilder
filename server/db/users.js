@@ -1,5 +1,7 @@
+import * as fp from "lodash/fp";
 import db from "./db";
-import validateSchema from "../schemas/index";
+import validateSchema from "../schemas/validate";
+import userSchema from "../schemas/userSchema";
 
 const users = db.use("users");
 
@@ -8,5 +10,8 @@ function createUser(user) {
 }
 
 export default {
-  create: validateSchema("user", createUser)
+  create: fp.compose(
+    createUser,
+    fp.curry(validateSchema)(userSchema)
+  )
 };
