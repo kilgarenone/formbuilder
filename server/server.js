@@ -21,7 +21,7 @@ async function initDatabase() {
   try {
     // await initDb();
     const user = {
-      email: "johndoe@example.com",
+      email: "johndoe1234@example.com",
       name: "John Do12332e"
     };
     console.log(user);
