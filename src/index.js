@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 
 import Editor from "./pages/editor/Editor";
 import configureStore from "./redux/configureStore";
+import "./db";
 
 const store = configureStore();
 

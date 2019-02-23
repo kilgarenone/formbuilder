@@ -19,18 +19,12 @@ import users from "./db/users";
 
 async function initDatabase() {
   try {
-    // await initDb();
-    const user = {
-      email: "johndoe1234@example.com",
-      name: "John Do12332e"
-    };
-    console.log(user);
-    const hello = await users.create(user);
+    await initDb();
     console.log("CouchDB databases initialized");
   } catch (err) {
-    // if (err && err.statusCode !== 412) {
-    console.log("Error in initDatabase()", err);
-    // }
+    if (err && err.statusCode !== 412) {
+      console.log("Error in initDatabase()", err);
+    }
   }
 }
 
@@ -143,9 +137,15 @@ server.get("/", (req, res) => {
   // );
 });
 
-server.use((error, req, res, next) => {
-  console.log("Error in error handler", error);
-  res.json({ message: error.message });
+server.use((err, req, res, next) => {
+  if (err.isBoom) {
+    console.log("Boom Error in error handler", err);
+    res.set(err.output.headers);
+    res.status(err.output.statusCode);
+    res.json(err.output.payload);
+  } else {
+    console.log("Non-Boom Error in error handler", err);
+  }
 });
 
 const PORT = process.env.PORT || 3000;
