@@ -26,40 +26,62 @@
   align-items: center;
 }
 
+.flex-xy-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .flex {
   display: flex;
 }
 
 .mb-0 {
-  margin-bottom: calc(var(--base-line-height) * 1 * var(--base-font-size));
+  margin-bottom: calc(
+    var(--base-line-height) * 1 * var(--base-font-size)
+  );
 }
 
 .mb-1 {
-  margin-bottom: calc(var(--base-line-height) * 1.5 * var(--base-font-size));
+  margin-bottom: calc(
+    var(--base-line-height) * 1.5 * var(--base-font-size)
+  );
 }
 
 .mb-2 {
-  margin-bottom: calc(var(--base-line-height) * 2 * var(--base-font-size));
+  margin-bottom: calc(
+    var(--base-line-height) * 2 * var(--base-font-size)
+  );
 }
 
 .mb-3 {
-  margin-bottom: calc(var(--base-line-height) * 2.5 * var(--base-font-size));
+  margin-bottom: calc(
+    var(--base-line-height) * 2.5 * var(--base-font-size)
+  );
 }
 
 .pb-0 {
-  padding-bottom: calc(var(--base-line-height) * 1 * var(--base-font-size));
+  padding-bottom: calc(
+    var(--base-line-height) * 1 * var(--base-font-size)
+  );
 }
 
 .pb-1 {
-  padding-bottom: calc(var(--base-line-height) * 1.5 * var(--base-font-size));
+  padding-bottom: calc(
+    var(--base-line-height) * 1.5 * var(--base-font-size)
+  );
 }
 
 .pb-2 {
-  padding-bottom: calc(var(--base-line-height) * 2 * var(--base-font-size));
+  padding-bottom: calc(
+    var(--base-line-height) * 2 * var(--base-font-size)
+  );
 }
 
 .pb-3 {
-  padding-bottom: calc(var(--base-line-height) * 2.5 * var(--base-font-size));
+  padding-bottom: calc(
+    var(--base-line-height) * 2.5 * var(--base-font-size)
+  );
 }
 
 label {
@@ -71,6 +93,10 @@ h1,
 h2,
 .h2 {
   line-height: var(--line-height-big);
+}
+
+h1 {
+  font-size: var(--font-L);
 }
 
 h3,
@@ -87,9 +113,9 @@ h4,
 }
 
 html {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
+  font-family: -apple-system, system-ui, BlinkMacSystemFont,
+    "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: var(--base-font-size);
   line-height: var(--base-line-height);
   font-style: normal;

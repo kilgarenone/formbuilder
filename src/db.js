@@ -1,23 +1,20 @@
 import PouchDB from "pouchdb-browser";
 import pouchDbAuth from "pouchdb-authentication";
+import { toHexCode } from "./utils";
 
 PouchDB.plugin(pouchDbAuth);
 
-const db = new PouchDB("http://localhost:5984/mydb", {
+export const dummyDB = new PouchDB(`${process.env.DB_BASEURL}`, {
   skip_setup: true
 });
 
-db.signUp("batman", "brucewayne", (err, response) => {
-  if (err) {
-    if (err.name === "conflict") {
-      // "batman" already exists, choose another username
-    } else if (err.name === "forbidden") {
-      // invalid username
-    } else {
-      // HTTP error, cosmic rays, etc.
-    }
-  }
-  console.log(response);
-});
+export const localDB = new PouchDB("documents");
 
-// export default db;
+// eslint-disable-next-line prefer-const
+export let remoteDB = null;
+
+export function setRemoteDB(userName) {
+  remoteDB = new PouchDB(
+    `${process.env.DB_BASEURL}/userdb-${toHexCode(userName)}`
+  );
+}
