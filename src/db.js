@@ -1,3 +1,4 @@
+/* eslint-disable import/no-mutable-exports */
 import PouchDB from "pouchdb-browser";
 import pouchDbAuth from "pouchdb-authentication";
 import { toHexCode } from "./utils";
@@ -10,8 +11,8 @@ export const dummyDB = new PouchDB(`${process.env.DB_BASEURL}`, {
 
 export const localDB = new PouchDB("documents");
 
-// eslint-disable-next-line prefer-const
 export let remoteDB = null;
+let syncHandler = null;
 
 export function setRemoteDB(userName) {
   remoteDB = new PouchDB(
@@ -21,4 +22,32 @@ export function setRemoteDB(userName) {
       fetch: (url, opts) => fetch(url, { ...opts, credentials: "include" })
     }
   );
+}
+
+export function initSyncDataBases() {
+  syncHandler = localDB
+    .sync(remoteDB, {
+      live: true,
+      retry: true
+    })
+    .on("change", change => {
+      // yo, something changed!
+    })
+    .on("paused", info => {
+      // replication was paused, usually because of a lost connection
+    })
+    .on("active", info => {
+      // replication was resumed
+    })
+    .on("error", err => {
+      // totally unhandled error (shouldn't happen)
+    });
+
+  syncHandler.on("complete", info => {
+    console.log("replication was canceled!");
+  });
+}
+
+export function cancelDataBasesSync() {
+  syncHandler.cancel();
 }
