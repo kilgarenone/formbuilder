@@ -36,9 +36,18 @@ class Signup extends Component {
   };
 
   helloDB = () => {
-    localDB.info().then(info => {
-      console.log(info);
-    });
+    const doc = {
+      _id: "mittens",
+      name: "Mittens",
+      occupation: "kitten",
+      age: 3,
+      hobbies: [
+        "playing with balls of yarn",
+        "chasing laser pointers",
+        "lookin' hella cute"
+      ]
+    };
+    localDB.put(doc);
   };
 
   render() {
