@@ -7,6 +7,7 @@ import Editor from "./pages/editor/Editor";
 import configureStore from "./redux/configureStore";
 import "./db";
 import Signup from "./pages/Signup";
+import LogIn from "./pages/LogIn";
 
 const store = configureStore();
 
@@ -15,7 +16,8 @@ const renderApp = () =>
     <Provider store={store}>
       <Router>
         {/* <Editor path="/" /> */}
-        <Signup path="/" />
+        {/* <Signup path="/" /> */}
+        <LogIn path="/" />
       </Router>
     </Provider>,
     document.getElementById("root")
