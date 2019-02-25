@@ -15,6 +15,10 @@ export let remoteDB = null;
 
 export function setRemoteDB(userName) {
   remoteDB = new PouchDB(
-    `${process.env.DB_BASEURL}/userdb-${toHexCode(userName)}`
+    `${process.env.DB_BASEURL}/userdb-${toHexCode(userName)}`,
+    {
+      skip_setup: true,
+      fetch: (url, opts) => fetch(url, { ...opts, credentials: "include" })
+    }
   );
 }
