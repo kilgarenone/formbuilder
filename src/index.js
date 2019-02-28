@@ -8,6 +8,7 @@ import configureStore from "./redux/configureStore";
 import "./db";
 import Signup from "./pages/Signup";
 import LogIn from "./pages/LogIn";
+import "./index.css";
 
 const store = configureStore();
 
