@@ -8,7 +8,7 @@
     "start:client": "cross-env NODE_ENV=development webpack-dev-server",
     "start:server": "npm-run-all --parallel dev:build-server dev:start",
     "build": "cross-env NODE_ENV=production webpack",
-    "dev:build-server": "cross-env NODE_ENV=development webpack --config webpack.server.js --mode=development --watch",
+    "dev:build-server": "cross-env NODE_ENV=development webpack --config server/webpack.server.js --mode=development --watch",
     "dev:start": "nodemon -r dotenv/config server_build/index.js dotenv_config_path=.env.server",
     "package-refresh": "rm -rf node_modules && rm -rf package-lock.json && npm i",
     "lint": "eslint ./src/**/**.js",
@@ -22,10 +22,8 @@
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
-    "@emotion/babel-preset-css-prop": "^10.0.6",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^1.0.0",
@@ -68,7 +66,6 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.1",
     "@reach/router": "^1.2.1",
     "body-parser": "^1.18.3",
     "boom": "^7.3.0",
