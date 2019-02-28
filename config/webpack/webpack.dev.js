@@ -4,7 +4,7 @@ const Jarvis = require("webpack-jarvis");
 const paths = require("./paths");
 
 module.exports = {
-  mode: "development", // this will trigger some webpack default stuffs for dev
+  mode: "development",
   output: {
     filename: "[name].js",
     path: paths.outputPath,
@@ -15,7 +15,7 @@ module.exports = {
     historyApiFallback: true,
     // compress: true, // gZip compression
     // historyApiFallback: true
-    hot: true, // enable hot module replacement (HMR), no refreshing -> keeps states/variables
+    hot: true,
     stats: "minimal"
   },
   // performance: {
@@ -42,14 +42,14 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader" // and finally this
+            loader: "style-loader"
           },
           {
-            loader: "css-loader" // then not sure abt this
+            loader: "css-loader"
           }
         ]
       }
     ]
   },
-  devtool: "inline-source-map " // one of the source map types. different speed in different type
+  devtool: "cheap-module-eval-source-map"
 };
