@@ -1,18 +1,16 @@
 {
   "presets": [
     [
-      "@babel/preset-env"
-      // TODO: 1) npm i  @babel/polyfill 2) import '@babel/polyfill' 3) uncomment below
-      // {
-      //   "useBuiltIns": 'entry',
-      // }
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage"
+      }
     ],
     "@babel/preset-react"
   ],
   "plugins": [
     "styled-jsx/babel",
     "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-transform-runtime"
+    "@babel/plugin-proposal-class-properties"
   ]
 }
