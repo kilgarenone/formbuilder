@@ -18,10 +18,8 @@ export default function conformInputToMasking(
     if (strippedValue[j] === undefined) {
       break;
     }
-    const parseAsIntVal = parseInt(strippedValue[j], 10);
 
-    const valueIsInt =
-      typeof parseAsIntVal === "number" && parseAsIntVal % 1 === 0;
+    const valueIsInt = !Number.isNaN(parseFloat(strippedValue[j]));
     const valueIsLetter = strippedValue[j]
       ? strippedValue[j].match(/[A-Z]/i)
       : false;
@@ -57,7 +55,7 @@ export function updateInputShellValue(currentValue, placeholder) {
 }
 
 export class ClientInputMasking {
-  constructor() { 
+  constructor() {
     alert("helloooooo testing for real!");
   }
 }
