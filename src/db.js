@@ -19,7 +19,7 @@ export function setRemoteDB(userName) {
     `${process.env.DB_BASEURL}/userdb-${toHexCode(userName)}`,
     {
       skip_setup: true,
-      fetch: (url, opts) => fetch(url, { ...opts, credentials: "include" })
+      fetch: (url, opts) => fetch(url, { ...opts, credentials: "same-origin" })
     }
   );
 }
