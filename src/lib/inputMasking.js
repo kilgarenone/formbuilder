@@ -19,7 +19,7 @@ export default function conformInputToMasking(
       break;
     }
 
-    const valueIsInt = !Number.isNaN(parseFloat(strippedValue[j]));
+    const valueIsInt = !Number.isNaN(parseFloat(strippedValue[j])); // TODO: ensure Number.isNaN is polyfilled by core-js babel/polyfill
     const valueIsLetter = strippedValue[j]
       ? strippedValue[j].match(/[A-Z]/i)
       : false;
