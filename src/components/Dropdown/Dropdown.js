@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import ButtonItem from "./ButtonItem";
-import Button from "./Button";
+import ButtonItem from "../ButtonItem";
+import Button from "../Button";
+import "./dropDown.css";
 
 class Dropdown extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Dropdown extends Component {
 
   render() {
     return (
-      <div>
+      <div className="cmp-dropDown">
         <Button
           type="button"
           aria-haspopup="true"
@@ -35,7 +36,7 @@ class Dropdown extends Component {
           {this.state.currentActiveItemDesc}
         </Button>
         {this.state.isMenuOpen && (
-          <div className="dropdown-menu" role="menu">
+          <div role="menu">
             {this.props.items.map(item => (
               <ButtonItem
                 key={item.type}
@@ -48,15 +49,6 @@ class Dropdown extends Component {
             ))}
           </div>
         )}
-        <style jsx>
-          {`
-            .dropdown-menu {
-              position: absolute;
-              background-color: white;
-              width: 100%;
-            }
-          `}
-        </style>
       </div>
     );
   }

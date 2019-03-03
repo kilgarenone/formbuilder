@@ -1,0 +1,11 @@
+#canvas {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0.7rem;
+  background-color: white;
+
+  > div {
+    background-color: lightgrey;
+    min-height: calc(100vh - 70px);
+  }
+}

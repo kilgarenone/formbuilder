@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import debounce from "lodash.debounce";
 import { connect } from "react-redux";
-import TextInputContainer from "./TextInput/TextInputContainer";
-import { setControlLabel } from "../pages/editor/Editor.state";
-import { setActiveControl } from "../pages/editor/PropertiesPanel/PropertiesPanel.state";
+import TextInputContainer from "../TextInput/TextInputContainer";
+import { setControlLabel } from "../../pages/editor/Editor.state";
+import { setActiveControl } from "../../pages/editor/PropertiesPanel/PropertiesPanel.state";
 import "./controlWrapper.css";
-import Label from "../Label";
+import Label from "../Label/Label";
 
 class Control extends Component {
   constructor(props) {

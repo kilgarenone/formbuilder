@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import FormColumn from "../../components/FormColumn/FormColumn";
-import EditorLayout from "./EditorLayout";
 import { parseUrlHash } from "../../utils";
 import Header from "../../components/Header/Header";
+import PropertiesPanel from "./PropertiesPanel/PropertiesPanel";
+import "./editor.scss";
 
 export default class Editor extends Component {
   constructor(props) {
@@ -29,9 +30,12 @@ export default class Editor extends Component {
     return (
       <>
         <Header />
-        <EditorLayout>
-          <FormColumn />
-        </EditorLayout>
+        <main id="canvas">
+          <div>
+            <FormColumn />
+          </div>
+        </main>
+        <PropertiesPanel />
       </>
     );
   }
