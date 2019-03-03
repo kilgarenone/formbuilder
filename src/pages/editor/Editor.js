@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Header from "components/Header/Header";
-import FormColumn from "components/FormColumn/FormColumn";
+import FormColumn from "../../components/FormColumn/FormColumn";
 import EditorLayout from "./EditorLayout";
 import { parseUrlHash } from "../../utils";
+import Header from "../../components/Header/Header";
 
 export default class Editor extends Component {
   constructor(props) {

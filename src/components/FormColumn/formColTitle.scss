@@ -1,0 +1,18 @@
+.cmp-formColTitle {
+  & {
+    position: relative;
+    height: 3rem;
+  }
+
+  h1 {
+    height: 100%;
+    z-index: 1;
+  }
+
+  span {
+    position: absolute;
+    top: 0;
+    color: #b3b3b1;
+    pointer-events: none;
+  }
+}

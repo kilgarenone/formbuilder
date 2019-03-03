@@ -10,30 +10,9 @@ class Button extends Component {
     const { item, onClick, children, ...props } = this.props;
 
     return (
-      <>
-        <button onClick={this.handleClick} {...props}>
-          {children}
-        </button>
-        <style jsx>
-          {`
-            button {
-              font-family: inherit;
-              display: inline-block;
-              border-radius: 99999rem;
-              font-weight: 500;
-              white-space: nowrap;
-              cursor: pointer;
-              text-align: center;
-              text-decoration: none;
-              appearance: none;
-              padding: 0.3em 1.5em;
-              border: 2px solid blue;
-              background-color: transparent;
-              width: 100%;
-            }
-          `}
-        </style>
-      </>
+      <button onClick={this.handleClick} {...props}>
+        {children}
+      </button>
     );
   }
 }

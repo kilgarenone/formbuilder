@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import debounce from "lodash.debounce";
 import { connect } from "react-redux";
-import Label from "components/Label";
 import TextInputContainer from "./TextInput/TextInputContainer";
 import { setControlLabel } from "../pages/editor/Editor.state";
 import { setActiveControl } from "../pages/editor/PropertiesPanel/PropertiesPanel.state";
+import "./controlWrapper.css";
+import Label from "../Label";
 
 class Control extends Component {
   constructor(props) {
@@ -73,7 +74,8 @@ class Control extends Component {
       <div
         tabIndex="0"
         role="button"
-        className={`control${activeControlId === ctrlId ? " active" : ""}`}
+        className="cmp-controlWrapper"
+        aria-pressed={activeControlId === ctrlId}
         onKeyUp={this.handleKeyUp}
         onClick={this.handleClickedControl}
       >
@@ -86,17 +88,6 @@ class Control extends Component {
           doNotShowLabelPlaceholder={this.state.doNotShowLabelPlaceholder}
         />
         {component}
-        <style jsx>
-          {`
-            .control:hover {
-              outline: 2px solid lightblue;
-            }
-
-            .control.active {
-              outline: 2px solid blue;
-            }
-          `}
-        </style>
       </div>
     );
   }

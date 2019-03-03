@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./tool.css";
 
 export default class Tool extends Component {
   clickHandler = () => {
@@ -8,18 +9,14 @@ export default class Tool extends Component {
   render() {
     return (
       <>
-        <button type="button" onClick={this.clickHandler} role="menuitem">
+        <button
+          type="button"
+          className="cmp-tool"
+          onClick={this.clickHandler}
+          role="menuitem"
+        >
           {this.props.name}
         </button>
-        <style jsx>
-          {`
-            button {
-              flex-basis: 33%;
-              height: 60px;
-              background: pink;
-            }
-          `}
-        </style>
       </>
     );
   }

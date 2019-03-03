@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ToolBox from "../ToolBox/ToolBox";
 import FormColTitle from "./FormColTitle";
-import Control from "../Control";
+import Control from "../ControlWrapper/ControlWrapper";
 import {
   createNewControlActionCreator,
   createNewFormColumnActionCreator,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Dropdown from "components/Dropdown";
 import { connect } from "react-redux";
-import Button from "components/Button";
+import Dropdown from "../../../components/Dropdown";
+import Button from "../../../components/Button";
 import {
   controlSelector,
   setInputFormat,

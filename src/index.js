@@ -16,9 +16,9 @@ const renderApp = () =>
   render(
     <Provider store={store}>
       <Router>
-        {/* <Editor path="/" /> */}
+        <Editor path="/" />
         {/* <Signup path="/" /> */}
-        <LogIn path="/" />
+        {/* <LogIn path="/" /> */}
       </Router>
     </Provider>,
     document.getElementById("root")

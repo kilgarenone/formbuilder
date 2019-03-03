@@ -1,5 +1,7 @@
+@import url("./utility.css");
+
 :root {
-  --base-font-size: 1rem;
+  --base-font-size: 100%;
   --base-line-height: 1.4;
   --line-height-small: 1.26;
   --line-height-big: 1.16;
@@ -15,77 +17,71 @@
   :root {
     --line-height-small: 1.36;
     --line-height-big: 1.23;
-    --base-font-size: 1.125rem;
+    --base-font-size: 120%;
     --base-line-height: 1.5;
   }
 }
 
-.flex-col-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.flex-xy-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex {
-  display: flex;
-}
-
-.mb-0 {
-  margin-bottom: calc(
-    var(--base-line-height) * 1 * var(--base-font-size)
-  );
-}
-
-.mb-1 {
-  margin-bottom: calc(
-    var(--base-line-height) * 1.5 * var(--base-font-size)
-  );
-}
-
-.mb-2 {
-  margin-bottom: calc(
-    var(--base-line-height) * 2 * var(--base-font-size)
-  );
-}
-
-.mb-3 {
-  margin-bottom: calc(
-    var(--base-line-height) * 2.5 * var(--base-font-size)
-  );
-}
-
-.pb-0 {
-  padding-bottom: calc(
-    var(--base-line-height) * 1 * var(--base-font-size)
-  );
-}
-
-.pb-1 {
-  padding-bottom: calc(
-    var(--base-line-height) * 1.5 * var(--base-font-size)
-  );
-}
-
-.pb-2 {
-  padding-bottom: calc(
-    var(--base-line-height) * 2 * var(--base-font-size)
-  );
-}
-
-.pb-3 {
-  padding-bottom: calc(
-    var(--base-line-height) * 2.5 * var(--base-font-size)
-  );
-}
-
 label {
   color: rgba(0, 0, 0, 0.74);
+}
+
+nav {
+  height: 70px;
+  padding: 0 0.5rem;
+  background-color: #f1f1f1;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+  overflow: hidden;
+}
+
+ul.flex > * {
+  margin-right: 0.5rem;
+}
+[aria-pressed="true"] {
+  outline: 2px solid blue;
+}
+button {
+  font-family: inherit;
+  display: inline-block;
+  border-radius: 99999rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  appearance: none;
+  padding: 0.3em 1.5em;
+  border: 2px solid blue;
+  background-color: transparent;
+  width: 100%;
+}
+
+input {
+  font-family: "Inter UI", "Helvetica Neue", HelveticaNeue, Helvetica,
+    Arial, sans-serif;
+  height: 2.7em;
+  width: 100%;
+  padding: 0.4em 0.7em;
+  color: rgba(0, 0, 0, 0.76);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 0.2em;
+  outline: 0;
+  box-shadow: none;
+}
+
+input:focus {
+  border-color: #2962ff;
+}
+
+input.invalid {
+  border-color: #ff1744;
 }
 
 h1,
@@ -106,10 +102,27 @@ h4,
   line-height: var(--line-height-small);
 }
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+* + * {
+  margin-top: 1.5em;
+}
+
+body,
+br,
+li,
+dt,
+dd,
+th,
+td,
+option {
+  margin-top: 0;
 }
 
 html {
@@ -135,44 +148,8 @@ html {
   color: rgba(0, 0, 0, 0.84);
 }
 
-button {
-  border: none;
-}
-
-blockquote,
-body,
-dd,
-dl,
-fieldset,
-figure,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hr,
-legend,
-ol,
-p,
-pre,
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-main,
-li {
-  display: block;
-}
-
 strong {
   font-weight: bold;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 img {
