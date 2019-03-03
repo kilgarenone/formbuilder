@@ -14,12 +14,6 @@ module.exports = {
     filename: chunkData =>
       chunkData.chunk.name === "server" ? "index.js" : "../public/[name].js"
   },
-  resolve: {
-    alias: {
-      css: path.resolve("src/css"),
-      components: path.resolve("src/components")
-    }
-  },
   module: {
     rules: [
       {
