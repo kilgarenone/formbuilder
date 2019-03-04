@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ButtonItem from "../ButtonItem";
 import Button from "../Button";
-import "./dropDown.css";
+import "./dropDown.scss";
 
 class Dropdown extends Component {
   constructor(props) {

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import TextInputContainer from "../TextInput/TextInputContainer";
 import { setControlLabel } from "../../pages/editor/Editor.state";
 import { setActiveControl } from "../../pages/editor/PropertiesPanel/PropertiesPanel.state";
-import "./controlWrapper.css";
+import "./controlWrapper.scss";
 import Label from "../Label/Label";
 
 class Control extends Component {

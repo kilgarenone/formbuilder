@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./tool.css";
+import "./tool.scss";
 
 export default class Tool extends Component {
   clickHandler = () => {

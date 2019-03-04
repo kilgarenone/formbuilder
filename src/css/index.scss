@@ -1,4 +1,4 @@
-@import url("./utility.css");
+@import url("./utility.scss");
 
 :root {
   --base-font-size: 100%;
@@ -115,20 +115,20 @@ h4,
   margin: 0;
 }
 
-* + * {
-  margin-top: 1.5em;
-}
+// * + * {
+//   margin-top: 1.5em;
+// }
 
-body,
-br,
-li,
-dt,
-dd,
-th,
-td,
-option {
-  margin-top: 0;
-}
+// body,
+// br,
+// li,
+// dt,
+// dd,
+// th,
+// td,
+// option {
+//   margin-top: 0;
+// }
 
 html {
   font-family: -apple-system, system-ui, BlinkMacSystemFont,

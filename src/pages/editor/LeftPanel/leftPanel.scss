@@ -1,0 +1,23 @@
+// #leftPanel {
+//   position: absolute;
+//   background: #fcfcfc;
+//   top: 42px;
+//   left: 0;
+//   bottom: 0;
+//   width: 200px;
+//   -webkit-user-select: none;
+//   -moz-user-select: none;
+//   -ms-user-select: none;
+//   user-select: none;
+//   display: flex;
+//   flex-direction: column;
+//   border-right: 1px solid #e5e5e5;
+//   cursor: default;
+//   z-index: 2;
+//   margin-top: 0;
+// }
+
+.cmp-leftPanel {
+  flex: 1 0 10rem;
+  background-color: #fcfcfc;
+}

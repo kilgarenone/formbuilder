@@ -1,11 +1,17 @@
-#canvas {
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 0.7rem;
-  background-color: white;
+// #canvas {
+//   max-width: 480px;
+//   margin: 0 auto;
+//   padding: 0.7rem;
+//   background-color: white;
 
-  > div {
-    background-color: lightgrey;
-    min-height: calc(100vh - 70px);
-  }
+//   > div {
+//     background-color: lightgrey;
+//     min-height: calc(100vh - 70px);
+//   }
+// }
+
+.cmp-editor {
+  margin-top: 42px;
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -4,6 +4,8 @@ import { parseUrlHash } from "../../utils";
 import Header from "../../components/Header/Header";
 import PropertiesPanel from "./PropertiesPanel/PropertiesPanel";
 import "./editor.scss";
+import LeftPanel from "./LeftPanel/LeftPanel";
+import Canvas from "./Canvas/Canvas";
 
 export default class Editor extends Component {
   constructor(props) {
@@ -30,12 +32,11 @@ export default class Editor extends Component {
     return (
       <>
         <Header />
-        <main id="canvas">
-          <div>
-            <FormColumn />
-          </div>
-        </main>
-        <PropertiesPanel />
+        <div className="cmp-editor">
+          <LeftPanel />
+          <Canvas />
+          <PropertiesPanel />
+        </div>
       </>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./header.scss";
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Header extends Component {
@@ -12,7 +13,7 @@ class Header extends Component {
 
   render() {
     return (
-      <nav className="nav">
+      <nav className="cmp-header">
         <ul className="flex">
           <li>New form</li>
           <li>Next item</li>
