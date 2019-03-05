@@ -1,7 +1,7 @@
 @import url("./utility.scss");
 
 // source https://codepen.io/MadeByMike/pen/bEEGvv
-$baseline: 1.5rem;
+$baseline: 3.5rem;
 // These values are the minimum and maximum viewport sizes to apply the font scaling
 $minWidth: 20;
 $maxWidth: 35;
@@ -15,24 +15,6 @@ $h2: 1.5rem;
 $h3: 1.25rem;
 $h4: 1rem;
 $h5: 0.875rem;
-
-html {
-  font-size: #{$minFont}rem;
-}
-// This part is a little bit ugly, I will explain what is going on in a blog post soon.
-@media screen and (min-width: #{$minWidth}em) {
-  html {
-    font-size: calc(
-      #{$minFont}em + (#{$maxFont} - #{$minFont}) *
-        ((100vw - #{$minWidth}rem) / (#{$maxWidth} - #{$minWidth}))
-    );
-  }
-}
-@media screen and (min-width: #{$maxWidth}em) {
-  html {
-    font-size: #{$maxFont}rem;
-  }
-}
 
 h1,
 h2,
@@ -145,6 +127,7 @@ html {
     "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
   line-height: 1.4;
+  font-size: #{$minFont}rem;
   font-style: normal;
   font-weight: 400;
   -webkit-text-size-adjust: 100%;
@@ -160,6 +143,20 @@ html {
   box-sizing: border-box;
   word-wrap: break-word;
   color: rgba(0, 0, 0, 0.84);
+}
+
+@media screen and (min-width: #{$minWidth}em) {
+  html {
+    font-size: calc(
+      #{$minFont}em + (#{$maxFont} - #{$minFont}) *
+        ((100vw - #{$minWidth}rem) / (#{$maxWidth} - #{$minWidth}))
+    );
+  }
+}
+@media screen and (min-width: #{$maxWidth}em) {
+  html {
+    font-size: #{$maxFont}rem;
+  }
 }
 
 strong {
