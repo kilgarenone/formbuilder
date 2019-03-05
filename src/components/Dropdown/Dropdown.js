@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ButtonItem from "../ButtonItem";
+import ButtonItem from "../ButtonItem/ButtonItem";
 import Button from "../Button";
 import "./dropDown.scss";
 
@@ -19,12 +19,18 @@ class Dropdown extends Component {
   };
 
   handleSelectedItem = item => {
-    this.props.handleSelectedItem(item);
-    this.setState({ currentActiveItemDesc: item.desc });
+    const { handleSelectedItem, accessorDesc } = this.props;
+
+    handleSelectedItem(item);
+    this.setState({
+      currentActiveItemDesc: accessorDesc ? item[accessorDesc] : item.desc
+    });
     this.toggleMenu();
   };
 
   render() {
+    const { accessorKey, accessorDesc, items } = this.props;
+
     return (
       <div className="cmp-dropDown">
         <Button
@@ -37,14 +43,14 @@ class Dropdown extends Component {
         </Button>
         {this.state.isMenuOpen && (
           <div role="menu">
-            {this.props.items.map(item => (
+            {items.map(item => (
               <ButtonItem
-                key={item.type}
+                key={accessorKey ? item[accessorKey] : item.type}
                 item={item}
                 type="button"
                 onClick={this.handleSelectedItem}
               >
-                {item.desc}
+                {accessorDesc ? item[accessorDesc] : item.desc}
               </ButtonItem>
             ))}
           </div>

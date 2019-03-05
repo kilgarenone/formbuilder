@@ -1,5 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React, { Component } from "react";
+import "./buttonItem.scss";
 
 class ButtonItem extends Component {
   handleClick = () => {
@@ -9,7 +10,7 @@ class ButtonItem extends Component {
   render() {
     const { children, item, onClick, ...props } = this.props;
     return (
-      <button onClick={this.handleClick} {...props}>
+      <button className="cmp-buttonItem" onClick={this.handleClick} {...props}>
         {children}
       </button>
     );

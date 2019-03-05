@@ -1,34 +1,75 @@
 @import url("./utility.scss");
 
-:root {
-  --base-font-size: 100%;
-  --base-line-height: 1.4;
-  --line-height-small: 1.26;
-  --line-height-big: 1.16;
-  --font-small: 0.804rem;
-  --font-normal: 1.125rem;
-  --font-normalx2: 1.175rem;
-  --font-M: 1.414rem;
-  --font-L: 1.788rem;
-  --font-XL: 2.53rem;
-}
+// source https://codepen.io/MadeByMike/pen/bEEGvv
+$baseline: 1.5rem;
+// These values are the minimum and maximum viewport sizes to apply the font scaling
+$minWidth: 20;
+$maxWidth: 35;
+// These values represent the range of fon-tsize to apply
+// These values effect the base font-size, headings and other elements will scale proportionally
+$minFont: 1;
+$maxFont: 1.23;
 
-@media (min-width: 35em) {
-  :root {
-    --line-height-small: 1.36;
-    --line-height-big: 1.23;
-    --base-font-size: 120%;
-    --base-line-height: 1.5;
+$h1: 2rem;
+$h2: 1.5rem;
+$h3: 1.25rem;
+$h4: 1rem;
+$h5: 0.875rem;
+
+html {
+  font-size: #{$minFont}rem;
+}
+// This part is a little bit ugly, I will explain what is going on in a blog post soon.
+@media screen and (min-width: #{$minWidth}em) {
+  html {
+    font-size: calc(
+      #{$minFont}em + (#{$maxFont} - #{$minFont}) *
+        ((100vw - #{$minWidth}rem) / (#{$maxWidth} - #{$minWidth}))
+    );
+  }
+}
+@media screen and (min-width: #{$maxWidth}em) {
+  html {
+    font-size: #{$maxFont}rem;
   }
 }
 
-label {
-  color: rgba(0, 0, 0, 0.74);
-  display: block;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-bottom: $baseline;
 }
 
-label + * {
-  margin-top: 0.5rem;
+h1 {
+  font-size: $h1;
+  line-height: $h1;
+  // margin-top: calc((#{$baseline} - #{$h1}) + #{$baseline});
+}
+
+h2 {
+  font-size: $h2;
+  line-height: $h2;
+  // margin-top: calc((#{$baseline} - #{$h2}) + #{$baseline}* 2);
+}
+
+h3 {
+  font-size: $h3;
+  line-height: $h3;
+  // margin-top: calc((#{$baseline} - #{$h3}) + #{$baseline}* 2);
+}
+
+h4 {
+  font-size: $h4;
+  line-height: $h4;
+  // margin-top: calc((#{$baseline} - #{$h4}) + #{$baseline}* 2);
+}
+
+h5 {
+  font-size: $h5;
+  line-height: $h5;
+  // margin-top: calc((#{$baseline} - #{$h5}) + #{$baseline}* 2);
 }
 
 nav {
@@ -46,9 +87,11 @@ ul {
 ul.flex > * {
   margin-right: 0.5rem;
 }
+
 [aria-pressed="true"] {
   outline: 2px solid blue;
 }
+
 button {
   font-family: inherit;
   display: inline-block;
@@ -89,24 +132,6 @@ input.invalid {
   border-color: #ff1744;
 }
 
-h1,
-.h1,
-h2,
-.h2 {
-  line-height: var(--line-height-big);
-}
-
-h1 {
-  font-size: var(--font-L);
-}
-
-h3,
-.h3,
-h4,
-.h4 {
-  line-height: var(--line-height-small);
-}
-
 * {
   box-sizing: inherit;
   font-family: inherit;
@@ -115,27 +140,11 @@ h4,
   margin: 0;
 }
 
-// * + * {
-//   margin-top: 1.5em;
-// }
-
-// body,
-// br,
-// li,
-// dt,
-// dd,
-// th,
-// td,
-// option {
-//   margin-top: 0;
-// }
-
 html {
   font-family: -apple-system, system-ui, BlinkMacSystemFont,
     "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: var(--base-font-size);
-  line-height: var(--base-line-height);
+  line-height: 1.4;
   font-style: normal;
   font-weight: 400;
   -webkit-text-size-adjust: 100%;

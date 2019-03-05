@@ -1,6 +1,6 @@
 import React from "react";
 import "./textInput.scss";
-import Label from "../Label/Label";
+import Label from "../ControlLabel/ControlLabel";
 
 export default function TextInput({
   control,

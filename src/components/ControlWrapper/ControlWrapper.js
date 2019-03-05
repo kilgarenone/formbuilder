@@ -5,7 +5,7 @@ import TextInputContainer from "../TextInput/TextInputContainer";
 import { setControlLabel } from "../../pages/editor/Editor.state";
 import { setActiveControl } from "../../pages/editor/PropertiesPanel/PropertiesPanel.state";
 import "./controlWrapper.scss";
-import Label from "../Label/Label";
+import Label from "../ControlLabel/ControlLabel";
 
 class Control extends Component {
   constructor(props) {

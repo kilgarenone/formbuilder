@@ -1,0 +1,16 @@
+.cmp-label {
+  position: relative;
+  display: block;
+  min-height: 2rem;
+
+  br {
+    display: none;
+  }
+
+  span {
+    position: absolute;
+    top: 0;
+    color: #b3b3b1;
+    pointer-events: none;
+  }
+}

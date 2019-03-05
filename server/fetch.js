@@ -1,14 +1,14 @@
 import fetch from "node-fetch";
 
 /* eslint-disable import/prefer-default-export */
-function goFetch(endPoint, options = {}) {
+function goFetch({ endPoint, options = {}, absoluteEndPoint = null }) {
   const { AUTH0_API_BASEURL } = process.env;
 
   const opts = {
     // credentials: "include", // set this for Set-Cookie to work!
     ...options
   };
-  return fetch(AUTH0_API_BASEURL + endPoint, opts)
+  return fetch(absoluteEndPoint || AUTH0_API_BASEURL + endPoint, opts)
     .then(checkStatus)
     .then(parseJSON)
     .catch(error => {
