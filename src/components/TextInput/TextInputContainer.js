@@ -36,7 +36,7 @@ class TextInputContainer extends Component {
 
   render() {
     const { control } = this.props;
-
+    console.log(control);
     return (
       <TextInput
         control={control}

@@ -12,7 +12,7 @@ export default function Label({
 }) {
   return (
     <label
-      className="cmp-label"
+      className="cmp-controlLabel"
       contentEditable={isContentEditable}
       onPaste={handlePasteInLabel}
       onKeyPress={handleKeyPressInLabel}

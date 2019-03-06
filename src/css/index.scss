@@ -1,6 +1,7 @@
 @import url("./utility.scss");
-
+@import "@material/textfield/mdc-text-field";
 // source https://codepen.io/MadeByMike/pen/bEEGvv
+// https://www.sassmeister.com/gist/7f22e44ace49b5124eec
 $baseline: 3.5rem;
 // These values are the minimum and maximum viewport sizes to apply the font scaling
 $minWidth: 20;
