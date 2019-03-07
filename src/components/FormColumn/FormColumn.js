@@ -11,6 +11,8 @@ import {
 } from "../../pages/editor/Editor.state";
 import TextInputContainer from "../TextInput/TextInputContainer";
 import TextInput from "../TextInput/TextInput";
+import "./formColumn.scss";
+import hamburger from "../../img/hamburger.png";
 
 class FormColumn extends Component {
   state = { doNotShowPlaceholder: false, controls: [] };
@@ -18,9 +20,6 @@ class FormColumn extends Component {
   formId = `form-${new Date().getTime()}`;
 
   componentDidMount() {
-    const textField = new MDCTextField(
-      document.querySelector(".mdc-text-field")
-    );
     this.props.createNewFormColumnActionCreator(this.formId);
   }
 
@@ -55,30 +54,23 @@ class FormColumn extends Component {
 
   render() {
     return (
-      <div className="t-t">
-        <FormColTitle
+      <div className="cmp-formColumn">
+        <div className="t-t">
+          {!this.state.controls.length && (
+            <figure>
+              <img
+                className="hamburger"
+                src={hamburger}
+                alt="Add an input from the toolbox below to begin"
+              />
+              <figcaption>Add an input to begin</figcaption>
+            </figure>
+          )}
+          {/* <FormColTitle
           handleTitleInput={this.handleTitleInput}
           doNotShowPlaceholder={this.state.doNotShowPlaceholder}
-        />
-        {/* <div>{this.state.controls.map(this.mapToControl)}</div> */}
-        {/* <TextInput control="ho3ij2o3ij2" /> */}
-        <div className="mdc-text-field">
-          <input className="mdc-text-field__input" />
-          <div className="mdc-line-ripple" />
-          <label className="mdc-floating-label">Name</label>
-        </div>
-        <div className="input-group mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              Default
-            </span>
-          </div>
-          <input
-            type="text"
-            className="form-control"
-            aria-label="Default"
-            aria-describedby="inputGroup-sizing-default"
-          />
+        /> */}
+          <div>{this.state.controls.map(this.mapToControl)}</div>
         </div>
         <ToolBox handleSelectedTool={this.handleSelectedTool} />
       </div>

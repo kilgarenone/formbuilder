@@ -1,3 +1,21 @@
-.cmp-controlWrapper:hover {
-  outline: 2px solid lightblue;
+.cmp-controlWrapper {
+  position: relative;
+  &:hover {
+    outline: 2px solid lightblue;
+  }
+}
+.ctrl-label {
+  position: relative;
+  display: block;
+  height: 2rem;
+
+  br {
+    display: none;
+  }
+}
+.dummy-label {
+  position: absolute;
+  top: 0;
+  color: #b3b3b1;
+  pointer-events: none;
 }

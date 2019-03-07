@@ -6,9 +6,8 @@ export default function Label({
   handleKeyPressInLabel = null,
   handleClickInLabel = null,
   handleInputInLabel = null,
-  doNotShowLabelPlaceholder = null,
-  isContentEditable = null,
-  children
+  doNotShowLabelPlaceholder = false,
+  isContentEditable = false
 }) {
   return (
     <label
@@ -22,7 +21,7 @@ export default function Label({
       htmlFor="world"
       suppressContentEditableWarning={isContentEditable}
     >
-      {children || (!doNotShowLabelPlaceholder && <span>Label</span>)}
+      {!doNotShowLabelPlaceholder && <span>Label</span>}
     </label>
   );
 }

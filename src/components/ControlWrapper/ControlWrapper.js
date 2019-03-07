@@ -5,13 +5,12 @@ import TextInputContainer from "../TextInput/TextInputContainer";
 import { setControlLabel } from "../../pages/editor/Editor.state";
 import { setActiveControl } from "../../pages/editor/PropertiesPanel/PropertiesPanel.state";
 import "./controlWrapper.scss";
-import Label from "../ControlLabel/ControlLabel";
 
 class Control extends Component {
   constructor(props) {
     super(props);
     this.handleLabelInput = debounce(this.handleLabelInput, 1500);
-    this.state = { doNotShowLabelPlaceholder: false };
+    this.state = { labelText: "", doNotShowLabelPlaceholder: false };
   }
 
   handleClickInLabel = e => {
@@ -79,14 +78,22 @@ class Control extends Component {
         onKeyUp={this.handleKeyUp}
         onClick={this.handleClickedControl}
       >
-        <Label
-          isContentEditable
-          handlePasteInLabel={this.handlePasteInLabel}
-          handleKeyPressInLabel={this.handleKeyPressInLabel}
-          handleClickInLabel={this.handleClickInLabel}
-          handleInputInLabel={this.handleLabelInputDebounced}
-          doNotShowLabelPlaceholder={this.state.doNotShowLabelPlaceholder}
-        />
+        {!this.state.doNotShowLabelPlaceholder && (
+          <label className="dummy-label">Label</label>
+        )}
+        <label
+          className="ctrl-label"
+          contentEditable
+          onPaste={this.handlePasteInLabel}
+          onKeyPress={this.handleKeyPressInLabel}
+          onClick={this.handleClickInLabel}
+          onInput={this.handleLabelInputDebounced}
+          spellCheck="false"
+          htmlFor="world"
+          suppressContentEditableWarning
+        >
+          {this.state.labelText}
+        </label>
         {component}
       </div>
     );
