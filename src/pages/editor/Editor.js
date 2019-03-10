@@ -18,7 +18,7 @@ export default class Editor extends Component {
     link.id = "t-t-theme";
     link.type = "text/css";
     link.href =
-      "https://cdn.jsdelivr.net/gh/kilgarenone/custom-build-bootstrap@0.0.1/output/compiled.css";
+      "https://cdn.jsdelivr.net/gh/kilgarenone/custom-build-bootstrap@0.0.3/output/compiled.css";
     document.head.appendChild(link);
     // if (/expires_in/.test(window.location.hash)) {
     //   const expiresIn = parseUrlHash(window.location.hash).expires_in;

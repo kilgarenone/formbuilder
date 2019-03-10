@@ -9,7 +9,7 @@ $maxWidth: 35;
 // These values represent the range of fon-tsize to apply
 // These values effect the base font-size, headings and other elements will scale proportionally
 $minFont: 1;
-$maxFont: 1.23;
+$maxFont: 1;
 
 $h1: 2rem;
 $h2: 1.5rem;
@@ -71,9 +71,9 @@ ul.flex > * {
   margin-right: 0.5rem;
 }
 
-[aria-pressed="true"] {
-  outline: 2px solid blue;
-}
+// [aria-pressed="true"] {
+//   outline: 2px solid blue;
+// }
 
 button {
   font-family: inherit;
@@ -108,40 +108,9 @@ input:focus {
   border-color: #2962ff;
 }
 
-input.invalid {
-  border-color: #ff1744;
-}
-
-* {
-  box-sizing: inherit;
-  font-family: inherit;
-  line-height: inherit;
-  color: inherit;
-  margin: 0;
-}
-
-html {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont,
-    "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
-  line-height: 1.4;
-  font-size: #{$minFont}rem;
-  font-style: normal;
-  font-weight: 400;
-  -webkit-text-size-adjust: 100%;
-  /* Font varient */
-  font-variant-ligatures: none;
-  -webkit-font-variant-ligatures: none;
-  /* Smoothing */
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale;
-  -moz-font-feature-settings: "liga" on;
-  font-smoothing: antialiased;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  word-wrap: break-word;
-  color: rgba(0, 0, 0, 0.84);
-}
+// input.invalid {
+//   border-color: #ff1744;
+// }
 
 @media screen and (min-width: #{$minWidth}em) {
   html {
@@ -155,14 +124,4 @@ html {
   html {
     font-size: #{$maxFont}rem;
   }
-}
-
-strong {
-  font-weight: bold;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  border: 0;
 }

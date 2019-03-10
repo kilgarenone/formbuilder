@@ -17,6 +17,7 @@ export default function TextInput({
         </span>
       )}
       <input
+        className="form-control"
         type={control.type}
         ref={inputRef}
         onChange={control.pattern || control.charset ? handleInputChange : null}
