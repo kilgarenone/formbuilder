@@ -9,23 +9,21 @@ import "./controlWrapper.scss";
 class Control extends Component {
   constructor(props) {
     super(props);
-    this.handleLabelInput = debounce(this.handleLabelInput, 1500);
-    this.state = { labelText: "", doNotShowLabelPlaceholder: false };
+    this.state = { showInputLabel: false };
   }
 
   handleClickInLabel = e => {
     e.preventDefault();
+    this.setState({ showInputLabel: true });
   };
 
-  handleLabelInput = label => {
+  handleLabelInput = e => {
     const { formId, ctrlId } = this.props;
-    this.props.setControlLabel(formId, ctrlId, label);
+    this.props.setControlLabel(formId, ctrlId, e.target.value);
   };
 
-  handleLabelInputDebounced = e => {
-    const label = e.target.textContent.trim();
-    this.setState({ doNotShowLabelPlaceholder: !!label });
-    this.handleLabelInput(label);
+  handleLabelInputOnBlur = e => {
+    this.setState({ showInputLabel: false });
   };
 
   handleKeyPressInLabel = e => {
@@ -67,7 +65,7 @@ class Control extends Component {
 
   render() {
     const component = this.getControlComponent(this.props.type);
-    const { activeControlId, ctrlId } = this.props;
+    const { activeControlId, ctrlId, currentControl } = this.props;
 
     return (
       <div
@@ -78,30 +76,39 @@ class Control extends Component {
         onKeyUp={this.handleKeyUp}
         onClick={this.handleClickedControl}
       >
-        {!this.state.doNotShowLabelPlaceholder && (
-          <label className="dummy-label">Label</label>
+        {this.state.showInputLabel ? (
+          <input
+            className="ctrl-label"
+            autoFocus
+            onInput={this.handleLabelInput}
+            placeholder={!currentControl.label && "Label"}
+            onBlur={this.handleLabelInputOnBlur}
+            value={currentControl.label}
+          />
+        ) : (
+          <label
+            className="ctrl-label"
+            // contentEditable
+            onPaste={this.handlePasteInLabel}
+            // onKeyPress={this.handleKeyPressInLabel}
+            onClick={this.handleClickInLabel}
+            // onInput={this.handleLabelInputDebounced}
+            // spellCheck="false"
+            htmlFor="world"
+            // suppressContentEditableWarning
+          >
+            {currentControl.label ? currentControl.label : "Label"}
+          </label>
         )}
-        <label
-          className="ctrl-label"
-          contentEditable
-          onPaste={this.handlePasteInLabel}
-          onKeyPress={this.handleKeyPressInLabel}
-          onClick={this.handleClickInLabel}
-          onInput={this.handleLabelInputDebounced}
-          spellCheck="false"
-          htmlFor="world"
-          suppressContentEditableWarning
-        >
-          {this.state.labelText}
-        </label>
         {component}
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
   return {
+    currentControl: state.forms[props.formId][props.ctrlId],
     activeControlId: state.activeControl.ctrlId
   };
 }

@@ -5,9 +5,13 @@
   }
 }
 .ctrl-label {
-  position: relative;
-  display: block;
-  height: 2rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0;
+  border: none;
 
   br {
     display: none;
