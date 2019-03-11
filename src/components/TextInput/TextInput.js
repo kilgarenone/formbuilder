@@ -12,7 +12,11 @@ export default function TextInput({
     <div className="cmp-textInput">
       {!inputRef && <Label>{control.label}</Label>}
       {control.placeholder && (
-        <span className="flex-xy-center" ref={inputShellRef} aria-hidden="true">
+        <span
+          className="flex-xy-center cmp-inputShell"
+          ref={inputShellRef}
+          aria-hidden="true"
+        >
           {control.placeholder}
         </span>
       )}

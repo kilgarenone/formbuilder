@@ -10,7 +10,7 @@ class TextInputContainer extends Component {
   constructor(props) {
     super(props);
     this.inputRef = React.createRef();
-    this.inputRefShellRef = React.createRef();
+    this.inputShellRef = React.createRef();
   }
 
   componentDidUpdate() {
