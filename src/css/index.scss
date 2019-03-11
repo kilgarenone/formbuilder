@@ -71,9 +71,9 @@ ul.flex > * {
   margin-right: 0.5rem;
 }
 
-// [aria-pressed="true"] {
-//   outline: 2px solid blue;
-// }
+[aria-pressed="true"] {
+  outline: 2px solid red;
+}
 
 button {
   font-family: inherit;

@@ -8,6 +8,7 @@ import {
   setAdvancedInputFormat
 } from "./PropertiesPanel.state";
 import "./propertiesPanel.scss";
+import { setLabelText } from "../Editor.state";
 
 const TEXT_INPUT_TYPES = [
   { type: "text", desc: "Text input" },
@@ -37,18 +38,30 @@ class PropertiesPanel extends Component {
     this.props.setInputFormat(config);
   };
 
+  setLabel = e => {
+    console.log(e);
+    this.props.setLabelText(e.target.value);
+  };
+
   render() {
+    const { activeControlProps } = this.props;
     return (
       <aside className="cmp-propertiesPanel">
-        {this.props.activeControlProps ? (
-          <div>
-            <h4>Input type</h4>
-            <Dropdown
-              items={TEXT_INPUT_TYPES}
-              handleSelectedItem={this.handleSelectedItem}
-              initialActiveItemDesc={this.props.activeControlProps.desc}
-            />
-          </div>
+        {activeControlProps ? (
+          <>
+            <div>
+              <h4>Label</h4>
+              <input onInput={this.setLabel} value={activeControlProps.label} />
+            </div>
+            <div>
+              <h4>Input type</h4>
+              <Dropdown
+                items={TEXT_INPUT_TYPES}
+                handleSelectedItem={this.handleSelectedItem}
+                initialActiveItemDesc={activeControlProps.desc}
+              />
+            </div>
+          </>
         ) : (
           <div>
             <div>Control's Properties panel</div>
@@ -106,6 +119,7 @@ function mapStateToProps(state, ownProps) {
 
 const mapDispatchToProps = {
   setInputFormat,
+  setLabelText,
   setAdvancedInputFormat
 };
 
