@@ -25,9 +25,9 @@ export function setAdvancedInputFormat(e) {
   // reduces all spaces to single space
   value = value.replace(/^\s+|\s+$/g, " ");
 
-  // only allows characters x, _, and whitespace
+  // only allows characters x, _, whitespace, (), -, +
   for (let i = 0; i < value.length; i++) {
-    if (value[i].match(/[x_\s]/i)) {
+    if (value[i].match(/[x_\s()-+]/i)) {
       newValue += value[i];
     }
   }
