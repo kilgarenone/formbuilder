@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import IMask from "imask";
 import { controlSelectorViaFormIdAndCtrlId } from "../../pages/editor/Editor.state";
 import conformInputToMasking, {
   updateInputShellValue
@@ -13,25 +14,60 @@ class TextInputContainer extends Component {
     this.inputShellRef = React.createRef();
   }
 
-  componentDidUpdate() {
-    // TODO: dynamic convert current text to new masking set
-    this.inputRef.current.value = "";
-    // this.inputRef.current.focus();
+  componentDidMount() {
+    this.mask = new IMask(this.inputRef.current, {
+      mask: /^.+$/
+    });
   }
 
+  componentDidUpdate() {
+    console.log(this.props);
+    const {
+      control: { format, dataType }
+    } = this.props;
+    let mask;
+    if (dataType === "date") {
+      mask = Date;
+    }
+    this.mask.updateOptions({
+      mask,
+      pattern: format, // define date -> str convertion
+      format(date) {
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        const year = date.getFullYear();
+
+        if (day < 10) day = `0${day}`;
+        if (month < 10) month = `0${month}`;
+
+        return [year, month, day].join("-");
+      },
+      // define str -> date convertion
+      parse(str) {
+        const yearMonthDay = str.split("-");
+        return new Date(yearMonthDay[0], yearMonthDay[1] - 1, yearMonthDay[2]);
+      }
+    });
+  }
+
+  // componentDidUpdate() {
+  //   // TODO: dynamic convert current text to new masking set
+  //   this.inputRef.current.value = "";
+  //   // this.inputRef.current.focus();
+  // }
+
   handleInputChange = () => {
-    const { placeholder, charset } = this.props.control;
-
-    this.inputRef.current.value = conformInputToMasking(
-      this.inputRef.current.value,
-      placeholder,
-      charset
-    );
-
-    this.inputShellRef.current.innerHTML = updateInputShellValue(
-      this.inputRef.current.value,
-      placeholder
-    );
+    // this.inputRef.current.value = conformInputToMasking(
+    //   this.inputRef.current.value,
+    //   placeholder,
+    //   charset
+    // );
+    // this.inputShellRef.current.innerHTML = updateInputShellValue(
+    //   this.inputRef.current.value,
+    //   placeholder
+    // );
+    console.log(this.mask.value);
+    console.log(this.mask.unmaskedValue);
   };
 
   render() {
@@ -39,8 +75,7 @@ class TextInputContainer extends Component {
     return (
       <TextInput
         control={control}
-        handleInputChange={this.handleInputChange}
-        inputShellRef={this.inputShellRef}
+        // inputShellRef={this.inputShellRef}
         inputRef={this.inputRef}
       />
     );

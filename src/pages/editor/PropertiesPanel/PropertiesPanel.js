@@ -88,10 +88,10 @@ class PropertiesPanel extends Component {
               type="button"
               title="2 digits months, and 2 digits year"
               item={{
-                placeholder: `MM/YY`,
+                format: `Y-m-d`,
                 // eslint-disable-next-line no-useless-escape
                 pattern: `(1[0-2]|0[1-9])\/\d\d`,
-                type: `date`
+                dataType: `date`
               }}
               onClick={this.handleSelectedFormatting}
             >

@@ -8,10 +8,24 @@ export default function conformInputToMasking(
   const placehold = charset || placeholder;
   const placeholderLength = placehold.length;
   let newValue = "";
-
   const strippedValue = charset
     ? currentValue.replace(/\W/g, "") // only keeps A-Z, a-z, 0-9, _
     : currentValue.replace(/\D/g, ""); // only keeps 0-9 (digits)
+  const strippedValueLen = strippedValue.length;
+
+  // convert to months
+  if (
+    placehold
+      .toUpperCase()
+      .substr(strippedValueLen - 1, strippedValueLen + 1) === "MM"
+  ) {
+    if (strippedValue > 1 && strippedValue < 10) {
+      newValue = `0${strippedValue}`;
+    } else {
+      newValue = strippedValue;
+    }
+    return newValue;
+  }
 
   for (let i = 0, j = 0; i < placeholderLength; i++) {
     // break if no characters left and the pattern is non-special character

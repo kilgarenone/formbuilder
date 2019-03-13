@@ -11,7 +11,7 @@ export default function TextInput({
   return (
     <div className="cmp-textInput">
       {!inputRef && <Label>{control.label}</Label>}
-      {control.placeholder && (
+      {/* {control.placeholder && (
         <span
           className="flex-xy-center cmp-inputShell"
           ref={inputShellRef}
@@ -19,12 +19,11 @@ export default function TextInput({
         >
           {control.placeholder}
         </span>
-      )}
+      )} */}
       <input
         className="form-control"
         type={control.type}
         ref={inputRef}
-        onChange={control.pattern || control.charset ? handleInputChange : null}
         pattern={control.pattern ? control.pattern : undefined}
         id="world"
       />
