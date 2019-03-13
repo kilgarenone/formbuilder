@@ -16,7 +16,44 @@ class TextInputContainer extends Component {
 
   componentDidMount() {
     this.mask = new IMask(this.inputRef.current, {
-      mask: /^.+$/
+      mask: Date,
+      pattern: "Y-`m-`d", // define date -> str convertion
+      lazy: false, // make placeholder always visible
+      blocks: {
+        d: {
+          mask: IMask.MaskedRange,
+          from: 1,
+          to: 31,
+          placeholderChar: "D",
+          maxLength: 2
+        },
+        m: {
+          mask: IMask.MaskedRange,
+          from: 1,
+          to: 12,
+          maxLength: 2
+        },
+        Y: {
+          mask: IMask.MaskedRange,
+          from: 1900,
+          to: 9999
+        }
+      },
+      format(date) {
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        const year = date.getFullYear();
+
+        if (day < 10) day = `0${day}`;
+        if (month < 10) month = `0${month}`;
+
+        return [year, month, day].join("-");
+      },
+      // define str -> date convertion
+      parse(str) {
+        const yearMonthDay = str.split("-");
+        return new Date(yearMonthDay[0], yearMonthDay[1] - 1, yearMonthDay[2]);
+      }
     });
   }
 
@@ -32,6 +69,26 @@ class TextInputContainer extends Component {
     this.mask.updateOptions({
       mask,
       pattern: format, // define date -> str convertion
+      lazy: false, // make placeholder always visible
+      blocks: {
+        d: {
+          mask: IMask.MaskedRange,
+          from: 1,
+          to: 31,
+          maxLength: 2
+        },
+        m: {
+          mask: IMask.MaskedRange,
+          from: 1,
+          to: 12,
+          maxLength: 2
+        },
+        Y: {
+          mask: IMask.MaskedRange,
+          from: 1900,
+          to: 9999
+        }
+      },
       format(date) {
         let day = date.getDate();
         let month = date.getMonth() + 1;
