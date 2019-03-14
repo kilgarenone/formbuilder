@@ -10,17 +10,17 @@ class LeftPanel extends Component {
     this.state = { themes: [] };
   }
 
-  async componentDidMount() {
-    try {
-      const res = await goFetch({
-        absoluteEndPoint: "https://bootswatch.com/api/4.json"
-      });
-      console.log(res);
-      this.setState({ themes: res.themes });
-    } catch (err) {
-      console.log("Error loading themes data from Bootswatch");
-    }
-  }
+  // async componentDidMount() {
+  //   try {
+  //     const res = await goFetch({
+  //       absoluteEndPoint: "https://bootswatch.com/api/4.json"
+  //     });
+  //     console.log(res);
+  //     this.setState({ themes: res.themes });
+  //   } catch (err) {
+  //     console.log("Error loading themes data from Bootswatch");
+  //   }
+  // }
 
   selectedBootstrapTheme = () => {
     const link = document.createElement("link");
