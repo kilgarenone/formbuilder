@@ -11,17 +11,18 @@ export default function TextInput({
   return (
     <div className="cmp-textInput">
       {!inputRef && <Label>{control.label}</Label>}
-      {/* {control.placeholder && (
+      {control.format && (
         <span
           className="flex-xy-center cmp-inputShell"
           ref={inputShellRef}
           aria-hidden="true"
         >
-          {control.placeholder}
+          {control.format}
         </span>
-      )} */}
+      )}
       <input
         className="form-control"
+        onChange={handleInputChange}
         type={control.type}
         ref={inputRef}
         pattern={control.pattern ? control.pattern : undefined}

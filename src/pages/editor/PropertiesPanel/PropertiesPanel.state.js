@@ -9,7 +9,7 @@ export function controlSelector(state) {
 }
 
 export function setInputFormat(config) {
-  if (config.type === "date") {
+  if (config.dataType === "date") {
     config.type = "tel";
   }
 
