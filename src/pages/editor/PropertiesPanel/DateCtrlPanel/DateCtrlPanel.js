@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  setInputFormat,
+  setControlProps,
   setAdvancedInputFormat
 } from "../PropertiesPanel.state";
 import Button from "../../../../components/Button";
@@ -12,7 +12,7 @@ class DateCtrlPanel extends Component {
   }
 
   handleSelectedFormatting = config => {
-    this.props.setInputFormat(config);
+    this.props.setControlProps(config);
   };
 
   render() {
@@ -58,7 +58,7 @@ class DateCtrlPanel extends Component {
 }
 
 const mapDispatchToProps = {
-  setInputFormat,
+  setControlProps,
   setAdvancedInputFormat
 };
 

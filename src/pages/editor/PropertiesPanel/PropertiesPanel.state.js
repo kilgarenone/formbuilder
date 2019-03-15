@@ -1,20 +1,20 @@
-import { SET_TEXT_MASKING } from "../Editor.state";
+import { SET_CONTROL_PROPS } from "../Editor.state";
 
 export function controlSelector(state) {
   const { activeFormId, activeCtrlId } = state.forms;
 
   return state.forms[activeFormId]
     ? state.forms[activeFormId][activeCtrlId]
-    : null;
+    : {};
 }
 
-export function setInputFormat(config) {
+export function setControlProps(config) {
   if (config.dataType === "date") {
     config.type = "tel";
   }
 
   return {
-    type: SET_TEXT_MASKING,
+    type: SET_CONTROL_PROPS,
     config
   };
 }
@@ -36,7 +36,7 @@ export function setAdvancedInputFormat(e) {
   e.target.value = newValue;
 
   return {
-    type: SET_TEXT_MASKING,
+    type: SET_CONTROL_PROPS,
     config: {
       placeholder: newValue.toUpperCase().replace(/_/i, "X"),
       charset: newValue

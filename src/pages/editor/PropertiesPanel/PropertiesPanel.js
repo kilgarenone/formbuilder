@@ -4,7 +4,7 @@ import Dropdown from "../../../components/Dropdown/Dropdown";
 import Button from "../../../components/Button";
 import {
   controlSelector,
-  setInputFormat,
+  setControlProps,
   setAdvancedInputFormat
 } from "./PropertiesPanel.state";
 import "./propertiesPanel.scss";
@@ -23,13 +23,13 @@ class PropertiesPanel extends Component {
   state = { activePanel: "" };
 
   handleSelectedItem = ({ type }) => {
-    this.setState({ activePanel: type });
+    this.props.setControlProps({ type });
     // if (type === "date") {
     //   this.setState({ showDateFormatSelections: true });
     // } else {
     //   this.setState({ showDateFormatSelections: false });
     //   // TODO: temporary code for MVP
-    //   this.props.setInputFormat({
+    //   this.props.setControlProps({
     //     pattern: "",
     //     type: "text",
     //     charset: "",
@@ -68,8 +68,7 @@ class PropertiesPanel extends Component {
             <div>Select a control to begin</div>
           </div>
         )}
-
-        <TabContents activeView={this.state.activePanel}>
+        <TabContents activeView={activeControlProps.type}>
           <DateControlPanel label="date" />
           <CurrCtrlPanel label="currency" />
         </TabContents>
@@ -85,7 +84,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 const mapDispatchToProps = {
-  setInputFormat,
+  setControlProps,
   setLabelText,
   setAdvancedInputFormat
 };

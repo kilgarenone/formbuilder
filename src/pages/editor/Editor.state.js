@@ -4,8 +4,8 @@ export const SET_ACTIVE_CONTROL = "formbuilder/pages/editor/setActiveControl";
 export const CREATE_NEW_FORM_COLUMN =
   "formbuilder/pages/editor/createNewFormColumn";
 export const UPDATE_FORM_TITLE = "formbuilder/pages/editor/updateFormTitle";
-export const SET_TEXT_MASKING =
-  "formbuilder/pages/editor/propertiesPanel/setTextMasking";
+export const SET_CONTROL_PROPS =
+  "formbuilder/pages/editor/propertiesPanel/setControlProps";
 
 const initialState = { activeFormId: "", activeCtrlId: "" };
 
@@ -51,7 +51,7 @@ export default (state = initialState, action) => {
           }
         }
       };
-    case SET_TEXT_MASKING:
+    case SET_CONTROL_PROPS:
       return {
         ...state,
         [activeFormId]: {
