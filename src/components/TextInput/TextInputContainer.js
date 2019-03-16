@@ -14,25 +14,41 @@ class TextInputContainer extends Component {
   }
 
   componentDidUpdate() {
+    const { dataType } = this.props.control;
+
+    if (dataType === "currency") {
+      this.control = new Intl.NumberFormat();
+    }
     // TODO: dynamic convert current text to new masking set
-    this.inputRef.current.value = "";
+    // this.inputRef.current.value = "";
+
     // this.inputRef.current.focus();
   }
 
   handleInputChange = () => {
     const { format, charset, dataType } = this.props.control;
+    // eslint-disable-next-line prefer-destructuring
+    const { current: input } = this.inputRef;
 
-    this.inputRef.current.value = conformInputToMasking(
-      this.inputRef.current.value,
-      format,
-      charset,
-      dataType
-    );
+    if (dataType === "currency") {
+      if (this.control instanceof Intl.NumberFormat) {
+        input.value = this.control.format(
+          input.value ? input.value.replace(/\D+/g, "") : ""
+        );
+      }
+    } else {
+      this.inputRef.current.value = conformInputToMasking(
+        this.inputRef.current.value,
+        format,
+        charset,
+        dataType
+      );
 
-    this.inputShellRef.current.innerHTML = updateInputShellValue(
-      this.inputRef.current.value,
-      format
-    );
+      this.inputShellRef.current.innerHTML = updateInputShellValue(
+        this.inputRef.current.value,
+        format
+      );
+    }
   };
 
   render() {

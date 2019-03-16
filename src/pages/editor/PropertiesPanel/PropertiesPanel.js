@@ -14,16 +14,16 @@ import CurrCtrlPanel from "./CurrCtrlPanel/CurrCtrlPanel";
 import TabContents from "../../../components/TabContents/TabContents";
 
 const TEXT_INPUT_TYPES = [
-  { type: "text", desc: "Text input" },
-  { type: "date", desc: "Date" },
-  { type: "currency", desc: "Currency" }
+  { dataType: "text", desc: "Text input" },
+  { dataType: "date", desc: "Date" },
+  { dataType: "currency", desc: "Currency" }
 ];
 
 class PropertiesPanel extends Component {
-  state = { activePanel: "" };
+  state = {};
 
-  handleSelectedItem = ({ type }) => {
-    this.props.setControlProps({ type });
+  handleSelectedItem = ({ dataType }) => {
+    this.props.setControlProps({ dataType });
     // if (type === "date") {
     //   this.setState({ showDateFormatSelections: true });
     // } else {
@@ -68,7 +68,8 @@ class PropertiesPanel extends Component {
             <div>Select a control to begin</div>
           </div>
         )}
-        <TabContents activeView={activeControlProps.type}>
+        {/* TODO: replace "currency" with activeControlProps.type */}
+        <TabContents activeView="currency">
           <DateControlPanel label="date" />
           <CurrCtrlPanel label="currency" />
         </TabContents>
