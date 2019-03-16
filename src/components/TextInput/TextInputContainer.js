@@ -31,10 +31,11 @@ class TextInputContainer extends Component {
     const { current: input } = this.inputRef;
 
     if (dataType === "currency") {
+      if (!input.value) {
+        return;
+      }
       if (this.control instanceof Intl.NumberFormat) {
-        input.value = this.control.format(
-          input.value ? input.value.replace(/\D+/g, "") : ""
-        );
+        input.value = this.control.format(input.value.replace(/\D+/g, ""));
       }
     } else {
       this.inputRef.current.value = conformInputToMasking(
