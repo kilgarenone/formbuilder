@@ -28,11 +28,22 @@ class Dropdown extends Component {
     this.toggleMenu();
   };
 
+  handleOnBlur = e => {
+    // currentTarget refers to this component.
+    // relatedTarget refers to the element where the user clicked (or focused) which
+    // triggered this event.
+    // So in effect, this condition checks if the user clicked outside the component.
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      // do your thing.
+      this.toggleMenu();
+    }
+  };
+
   render() {
     const { accessorKey, accessorDesc, items } = this.props;
 
     return (
-      <div className="cmp-dropDown">
+      <div onBlur={this.handleOnBlur} className="cmp-dropDown">
         <Button
           type="button"
           aria-haspopup="true"
