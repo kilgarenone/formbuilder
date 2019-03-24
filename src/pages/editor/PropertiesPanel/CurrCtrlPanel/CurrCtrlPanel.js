@@ -5,7 +5,11 @@ import Dropdown from "../../../../components/Dropdown/Dropdown";
 import { setControlProps } from "../PropertiesPanel.state";
 
 const CURRENCY = [
-  { currencyType: "usd", desc: "\u0024 USD" },
+  {
+    currencyType: "usd",
+    locale: "en-US",
+    desc: "\u0024 USD"
+  },
   { currencyType: "eur", desc: "\u20AC EUR" },
   { currencyType: "gbp", desc: "\u00A3 GBP" },
   { currencyType: "rmb", desc: "\u00A5 RMB" },
@@ -18,7 +22,7 @@ class CurrCtrlPanel extends Component {
   handleSelectedCurr = currObj => {
     const { desc, ...restConfig } = currObj;
 
-    // this.props.setControlProps(restConfig);
+    this.props.setControlProps(restConfig);
   };
 
   render() {

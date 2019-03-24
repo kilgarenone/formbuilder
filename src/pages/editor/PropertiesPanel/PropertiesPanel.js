@@ -24,18 +24,6 @@ class PropertiesPanel extends Component {
 
   handleSelectedItem = ({ dataType }) => {
     this.props.setControlProps({ dataType });
-    // if (type === "date") {
-    //   this.setState({ showDateFormatSelections: true });
-    // } else {
-    //   this.setState({ showDateFormatSelections: false });
-    //   // TODO: temporary code for MVP
-    //   this.props.setControlProps({
-    //     pattern: "",
-    //     type: "text",
-    //     charset: "",
-    //     placeholder: ""
-    //   });
-    // }
   };
 
   setLabel = e => {

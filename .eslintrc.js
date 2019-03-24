@@ -38,14 +38,8 @@ module.exports = {
     "react/prop-types": "off",
     "no-use-before-define": "off",
     "no-param-reassign": ["error", { props: false }],
-    "react/jsx-no-bind": [
-      "error",
-      { allowArrowFunctions: false }
-    ],
-    "no-plusplus": [
-      "error",
-      { allowForLoopAfterthoughts: true }
-    ],
+    "react/jsx-no-bind": ["error", { allowArrowFunctions: false }],
+    "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
     "no-console": [
       "error",
       { allow: ["error", "group", "groupEnd", "warn"] }

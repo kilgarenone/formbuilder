@@ -14,10 +14,17 @@ class TextInputContainer extends Component {
   }
 
   componentDidUpdate() {
-    const { dataType } = this.props.control;
+    const {
+      locale = "en",
+      currencyType = "USD",
+      dataType
+    } = this.props.control;
 
     if (dataType === "currency") {
-      this.control = new Intl.NumberFormat();
+      this.control = new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: currencyType
+      });
     }
     // TODO: dynamic convert current text to new masking set
     // this.inputRef.current.value = "";
@@ -26,30 +33,44 @@ class TextInputContainer extends Component {
   }
 
   handleInputChange = () => {
-    const { format, charset, dataType } = this.props.control;
-    // eslint-disable-next-line prefer-destructuring
+    const {
+      format,
+      charset,
+      dataType,
+      currencyType,
+      decimal
+    } = this.props.control;
+
     const { current: input } = this.inputRef;
 
     if (dataType === "currency") {
       if (!input.value) {
         return;
       }
-      if (this.control instanceof Intl.NumberFormat) {
-        input.value = this.control.format(input.value.replace(/\D+/g, ""));
-      }
-    } else {
-      this.inputRef.current.value = conformInputToMasking(
-        this.inputRef.current.value,
-        format,
-        charset,
-        dataType
-      );
 
-      this.inputShellRef.current.innerHTML = updateInputShellValue(
-        this.inputRef.current.value,
-        format
-      );
+      if (this.control instanceof Intl.NumberFormat) {
+        const value = this.control.format(
+          parseFloat(input.value.replace(/(?![.])\W/g, ""))
+            .toFixed(2)
+            .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, "$1")
+        );
+
+        input.value = value.replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, "$1");
+      }
     }
+    // else {
+    //   this.inputRef.current.value = conformInputToMasking(
+    //     this.inputRef.current.value,
+    //     format,
+    //     charset,
+    //     dataType
+    //   );
+
+    //   this.inputShellRef.current.innerHTML = updateInputShellValue(
+    //     this.inputRef.current.value,
+    //     format
+    //   );
+    // }
   };
 
   render() {
