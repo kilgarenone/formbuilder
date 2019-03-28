@@ -45,18 +45,27 @@ class TextInputContainer extends Component {
 
     if (dataType === "currency") {
       if (this.control instanceof Intl.NumberFormat) {
-        debugger;
-        let value = parseFloat(input.value.replace(/(?![.])\W/g, ""));
+        let value = input.value.replace(/,(\d{0,2})$/, ".$1");
+
+        if (value[value.length - 1] === ".") {
+          input.value = value;
+          return;
+        }
+        const hasDecimal = /\.\d{0,2}$/.test(value);
+
+        value = parseFloat(input.value.replace(/(?![.])\W/g, ""));
 
         if (Number.isNaN(value)) {
           input.value = "";
           return;
         }
 
-        value = value.toFixed(2);
+        // value = value.toFixed(2);
         const amount = this.control.format(value);
 
-        input.value = amount.replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, "$1");
+        input.value = hasDecimal
+          ? amount
+          : amount.replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, "$1");
       }
     }
     // else {

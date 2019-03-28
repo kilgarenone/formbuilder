@@ -8,9 +8,15 @@ const CURRENCY = [
   {
     currencyType: "usd",
     locale: "en-US",
+    decimalChar: ".",
     desc: "\u0024 USD"
   },
-  { currencyType: "eur", locale: "en-150", desc: "\u20AC EUR" },
+  {
+    currencyType: "eur",
+    locale: "en-150",
+    decimalChar: ",",
+    desc: "\u20AC EUR"
+  },
   { currencyType: "rmb", desc: "\u00A5 RMB" },
   { currencyType: "inr", desc: "\u20B9 INR" }
 ];
