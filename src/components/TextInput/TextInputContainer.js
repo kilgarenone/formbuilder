@@ -44,18 +44,19 @@ class TextInputContainer extends Component {
     const { current: input } = this.inputRef;
 
     if (dataType === "currency") {
-      if (!input.value) {
-        return;
-      }
-
       if (this.control instanceof Intl.NumberFormat) {
-        const value = this.control.format(
-          parseFloat(input.value.replace(/(?![.])\W/g, ""))
-            .toFixed(2)
-            .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, "$1")
-        );
+        let value = parseFloat(input.value.replace(/(?![.])\W/g, ""));
 
-        input.value = value.replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, "$1");
+        if (Number.isNaN(value)) {
+          input.value = "";
+          return;
+        }
+
+        value = value.toFixed(2);
+
+        const amount = this.control.format(value);
+
+        input.value = amount.replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, "$1");
       }
     }
     // else {
