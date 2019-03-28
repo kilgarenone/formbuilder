@@ -47,6 +47,9 @@ class TextInputContainer extends Component {
       if (this.control instanceof Intl.NumberFormat) {
         let value = input.value.replace(/,(\d{0,2})$/, ".$1");
 
+        const result = /(\.)(\d{0,2})$/.exec(value);
+        // TODO: works from the 'result' array
+        console.log(result);
         if (value[value.length - 1] === ".") {
           input.value = value;
           return;
