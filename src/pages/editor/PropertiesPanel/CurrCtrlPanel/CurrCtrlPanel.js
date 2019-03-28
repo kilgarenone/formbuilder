@@ -10,8 +10,7 @@ const CURRENCY = [
     locale: "en-US",
     desc: "\u0024 USD"
   },
-  { currencyType: "eur", desc: "\u20AC EUR" },
-  { currencyType: "gbp", desc: "\u00A3 GBP" },
+  { currencyType: "eur", locale: "en-150", desc: "\u20AC EUR" },
   { currencyType: "rmb", desc: "\u00A5 RMB" },
   { currencyType: "inr", desc: "\u20B9 INR" }
 ];

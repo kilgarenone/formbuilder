@@ -45,6 +45,7 @@ class TextInputContainer extends Component {
 
     if (dataType === "currency") {
       if (this.control instanceof Intl.NumberFormat) {
+        debugger;
         let value = parseFloat(input.value.replace(/(?![.])\W/g, ""));
 
         if (Number.isNaN(value)) {
@@ -53,7 +54,6 @@ class TextInputContainer extends Component {
         }
 
         value = value.toFixed(2);
-
         const amount = this.control.format(value);
 
         input.value = amount.replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, "$1");
